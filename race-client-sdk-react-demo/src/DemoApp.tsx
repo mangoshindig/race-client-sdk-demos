@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { Box } from "@twilio-paste/core/Box";
+import { Box } from "@twilio-paste/core/box";
 import { VideoButton } from "./components/VideoButton/VideoButton";
 import { useFlexChatContext } from "./hooks/useFlexChatContext";
 import { useVideoContext } from "./hooks/useVideoContext";

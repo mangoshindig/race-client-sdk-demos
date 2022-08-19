@@ -1,4 +1,4 @@
-import { Button } from "@twilio-paste/core/Button";
+import { Button } from "@twilio-paste/core/button";
 import { FC } from "react";
 import { useVoiceContext } from "../../hooks/useVoiceContext";
 import { ProductVoiceIcon } from "@twilio-paste/icons/esm/ProductVoiceIcon";

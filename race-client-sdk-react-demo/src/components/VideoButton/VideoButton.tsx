@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { Button } from "@twilio-paste/core/Button";
-import { Modal, ModalHeader, ModalHeading, ModalBody, ModalFooter, ModalFooterActions } from "@twilio-paste/core/Modal";
+import { Button } from "@twilio-paste/core/button";
+import { Modal, ModalHeader, ModalHeading, ModalBody, ModalFooter, ModalFooterActions } from "@twilio-paste/core/modal";
 import { ProductVideoIcon } from "@twilio-paste/icons/esm/ProductVideoIcon";
 import { useUID } from "@twilio-paste/core/uid-library";
-import { Box } from "@twilio-paste/core/Box";
+import { Box } from "@twilio-paste/core/box";
 import { useVideoContext } from "../../hooks/useVideoContext";
 import { MuteButton } from "./MuteButton";
 import { UnmuteButton } from "./UnmuteButton";
