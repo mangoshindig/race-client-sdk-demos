@@ -52,3 +52,28 @@ jobs:
           projectName: race-client-sdk-react-demo
           directory: ./race-client-sdk-react-demo/build
           gitHubToken: ${{ secrets.BOT_PAT_TOKEN }}
+
+  publish-simple-web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./race-client-sdk-web-demo
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          token: ${{ secrets.BOT_PAT_TOKEN }}
+
+      - name: Create env_file
+        run: echo "const ACCOUNT_SID='${{ secrets.REACT_APP_ACCOUNT_SID }}';const VOICE_APP_SID='${{ secrets.REACT_APP_VOICE_APP_SID }}';const FLEXCHAT_FLOW_SID='${{ secrets.REACT_APP_FLEXCHAT_FLOW_SID }}';const FORM_ID='${{ secrets.REACT_APP_FORM_ID }}';const VOICE_APP_CLI='${{ secrets.REACT_APP_VOICE_APP_CLI }}';const IDENTITY='${{ secrets.REACT_APP_IDENTITY }}';" > env.js
+
+      - name: Publish
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: race-client-sdk-web-demo
+          directory: ./race-client-sdk-web-demo
+          gitHubToken: ${{ secrets.BOT_PAT_TOKEN }}
