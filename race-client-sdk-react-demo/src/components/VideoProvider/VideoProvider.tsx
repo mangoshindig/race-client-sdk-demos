@@ -72,6 +72,10 @@ export const VideoProvider: FC<ReactElementProps> = ({ children }: ReactElementP
 
 	const init = (): void => {
 		try {
+			if(!ACCOUNT_SID || !IDENTITY) {
+				throw new Error ("Missing ACCOUNT_SID or IDENTITY Variables");
+			}
+
 			const v = new Video({
 				accountSid: ACCOUNT_SID,
 				identity: IDENTITY

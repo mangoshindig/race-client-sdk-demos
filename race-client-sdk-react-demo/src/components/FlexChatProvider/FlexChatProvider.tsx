@@ -15,6 +15,10 @@ export const FlexChatProvider: FC<ReactElementProps> = ({ children }: ReactEleme
 
 	const init = async () => {
 		try {
+			if(!ACCOUNT_SID || !FLEXCHAT_FLOW_SID) {
+				throw new Error ("Missing ACCOUNT_SID or FLEXCHAT_FLOW_SID Variables");
+			}
+
 			const v = new Webchat({
 				accountSid: ACCOUNT_SID,
 				flowSid: FLEXCHAT_FLOW_SID

@@ -32,6 +32,10 @@ export const FormProvider: FC<ReactElementProps> = ({ children }: ReactElementPr
 
 	const init = async () => {
 		try {
+			if(!ACCOUNT_SID || !FORM_ID) {
+				throw new Error ("Missing ACCOUNT_SID or FORM_ID Variables");
+			}
+
 			const v = new Form({
 				accountSid: ACCOUNT_SID,
 				formId: FORM_ID

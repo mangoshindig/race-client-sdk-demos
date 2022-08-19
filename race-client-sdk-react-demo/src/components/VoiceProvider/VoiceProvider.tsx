@@ -21,6 +21,10 @@ export const VoiceProvider: FC<ReactElementProps> = ({ children }: ReactElementP
 
 	const init = (): void => {
 		try {
+			if(!ACCOUNT_SID || !IDENTITY || !VOICE_APP_SID) {
+				throw new Error ("Missing ACCOUNT_SID or IDENTITY or VOICE_APP_SID Variables");
+			}
+
 			const v = new Voice({
 				accountSid: ACCOUNT_SID,
 				identity: IDENTITY,
@@ -47,6 +51,10 @@ export const VoiceProvider: FC<ReactElementProps> = ({ children }: ReactElementP
 	}
 
 	const connect = async (): Promise<void> => {
+		if(!VOICE_APP_CLI) {
+			throw new Error ("Missing VOICE_APP_CLI Variables");
+		}
+
 		await voice?.connect({ to: VOICE_APP_CLI, params: {} });
 	}
 
