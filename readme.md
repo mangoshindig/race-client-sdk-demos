@@ -14,8 +14,8 @@ These Applications demonstrate a multi-functional web application built with [Ci
 
 Hosted Demos are available for both apps:
 
-[React App Demo](race-client-sdk-react-demo.pages.dev)
-[Simple Web App Demo](race-client-sdk-web-demo.pages.dev)
+- [React App Demo](https://race-client-sdk-react-demo.pages.dev)
+- [Simple Web App Demo](https://race-client-sdk-web-demo.pages.dev)
 
 ## Clone the repository
 
