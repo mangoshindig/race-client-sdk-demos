@@ -1,0 +1,53 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-react:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /race-client-sdk-react-demo
+
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          token: ${{ secrets.BOT_PAT_TOKEN }}
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies 👨🏻‍💻
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
+        env:
+          REACT_APP_ACCOUNT_SID: ${{ secrets.REACT_APP_ACCOUNT_SID }}
+          REACT_APP_VOICE_APP_SID: ${{ secrets.REACT_APP_VOICE_APP_SID }}
+          REACT_APP_FLEXCHAT_FLOW_SID: ${{ secrets.REACT_APP_FLEXCHAT_FLOW_SID }}
+          REACT_APP_FORM_ID: ${{ secrets.REACT_APP_FORM_ID }}
+          REACT_APP_VOICE_APP_CLI: ${{ secrets.REACT_APP_VOICE_APP_CLI }}
+          REACT_APP_IDENTITY: ${{ secrets.REACT_APP_IDENTITY }}
+
+      - name: Publish
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: race-client-sdk-react-demo
+          directory: ./race-client-sdk-react-demo/build
+          gitHubToken: ${{ secrets.BOT_PAT_TOKEN }}
