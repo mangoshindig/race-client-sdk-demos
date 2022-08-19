@@ -10,6 +10,13 @@ These Applications demonstrate a multi-functional web application built with [Ci
 - React and Simple Demos Available
 - No other infrastructure is required
 
+## Try It
+
+Hosted Demos are available for both apps:
+
+[React App Demo](race-client-sdk-react-demo.pages.dev)
+[Simple Web App Demo](race-client-sdk-web-demo.pages.dev)
+
 ## Clone the repository
 
 Clone this repository and cd into the project directory:
