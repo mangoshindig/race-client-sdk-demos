@@ -1,11 +1,8 @@
-import { Box } from "@twilio-paste/core/box";
-import { Button } from "@twilio-paste/core/button";
-import { Text } from "@twilio-paste/core/text";
 import { FC, useEffect, useState } from "react";
-import Call from "./components/Call";
-import Icon from "./icons";
-import { Buttons, ButtonsContainer, Description, HeaderButton, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "./index.styles";
-import { ViewRender } from "./RenderFunction";
+import { NavButton } from "./components/NavButton";
+import Icon from "./assets/icons";
+import { ButtonsContainer, Description, HeaderButton, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "./assets/index.styles";
+import { ViewRender } from "./utils/RenderFunction";
 
 export const RaceConnect: FC = () => {
 
@@ -16,6 +13,7 @@ export const RaceConnect: FC = () => {
 
 	useEffect(() => {
 		ViewRender(containerName);
+		console.log(containerName)
 	}, [containerName]);
 
 	return (
@@ -32,7 +30,7 @@ export const RaceConnect: FC = () => {
 			{parentContainer ? (
 				<ParentContainer>
 					<HeaderContainer>
-						<HeaderLogo src="https://cdn.ciptex.com/ciptex-assets/logos/ciptex-dark-logo.png"></HeaderLogo>
+						<HeaderLogo src="https://cdn.ciptex.com/ciptex-assets/logos/ciptex-dark-logo.png" />
 						<HeaderButtonsContainer>
 							{!buttonContainer && (
 								<HeaderButton onClick={() => {
@@ -61,98 +59,12 @@ export const RaceConnect: FC = () => {
 								Choose your preferred communication channels to connect with
 								Ciptex.
 							</Description>
-							<Box paddingX="space20" display="grid" rowGap="space50">
-								<Button onClick={() => {
-									setContainerName("call");
-									setButtonContainer(false);
-								}} variant="secondary">
-									<Box display="flex" justifyContent="flex-start" padding="space10" marginLeft="space20">
-										<Box>
-											<Icon icon="call" />
-										</Box>
-										<Box paddingLeft="space40">
-											<Text as="p" fontWeight="fontWeightBold" fontSize="fontSize40">
-									Call
-											</Text>
-										</Box>
-									</Box>
-								</Button>
-								<Button onClick={() => {
-									setContainerName("video");
-									setButtonContainer(false);
-								}} variant="secondary">
-									<Box display="flex" justifyContent="flex-start" padding="space10" marginLeft="space20">
-										<Box>
-											<Icon icon="chat" />
-										</Box>
-										<Box paddingLeft="space40">
-											<Text as="p" fontWeight="fontWeightBold" fontSize="fontSize40">
-									Chat
-											</Text>
-										</Box>
-									</Box>
-								</Button>
-								<Button onClick={() => {
-									setContainerName("video");
-									setButtonContainer(false);
-								}} variant="secondary">
-									<Box display="flex" justifyContent="flex-start" padding="space10" marginLeft="space20">
-										<Box>
-											<Icon icon="enquire" />
-										</Box>
-										<Box paddingLeft="space40">
-											<Text as="p" fontWeight="fontWeightBold" fontSize="fontSize40">
-									Enquire
-											</Text>
-										</Box>
-									</Box>
-								</Button>
-								<Button onClick={() => {
-									setContainerName("video");
-									setButtonContainer(false);
-								}} variant="secondary">
-									<Box display="flex" justifyContent="flex-start" padding="space10" marginLeft="space20">
-										<Box>
-											<Icon icon="video" />
-										</Box>
-										<Box paddingLeft="space40">
-											<Text as="p" fontWeight="fontWeightBold" fontSize="fontSize40">
-									Video Chat
-											</Text>
-										</Box>
-									</Box>
-								</Button>
-								<Button onClick={() => {
-									setContainerName("video");
-									setButtonContainer(false);
-								}} variant="secondary">
-									<Box display="flex" justifyContent="flex-start" padding="space10" marginLeft="space20">
-										<Box>
-											<Icon icon="whatsapp" />
-										</Box>
-										<Box paddingLeft="space40">
-											<Text as="p" fontWeight="fontWeightBold" fontSize="fontSize40">
-									WhatsApp
-											</Text>
-										</Box>
-									</Box>
-								</Button>
-								<Button onClick={() => {
-									setContainerName("video");
-									setButtonContainer(false);
-								}} variant="secondary">
-									<Box display="flex" justifyContent="flex-start" padding="space10" marginLeft="space20">
-										<Box>
-											<Icon icon="facebook" />
-										</Box>
-										<Box paddingLeft="space40">
-											<Text as="p" fontWeight="fontWeightBold" fontSize="fontSize40">
-									Facebook Messenger
-											</Text>
-										</Box>
-									</Box>
-								</Button>
-							</Box>
+							<NavButton icon="call" title="Call" onClick={() => { setContainerName("call"); setButtonContainer(false); }}/>
+							<NavButton icon="chat" view="0 0 576 512" title="Chat" onClick={() => { setContainerName("chat"); setButtonContainer(false); }}/>
+							<NavButton icon="enquire" title="Enquire" onClick={() => { setContainerName("enquire"); setButtonContainer(false); }}/>
+							<NavButton icon="video" view="0 0 576 512" title="video Chat" onClick={() => { setContainerName("video"); setButtonContainer(false); }}/>
+							<NavButton icon="whatsapp" view="0 0 448 512" title="WhatsApp" onClick={() => { setContainerName("whatsapp"); setButtonContainer(false); }}/>
+							<NavButton icon="facebook" title="Facebook Messenger" onClick={() => { setContainerName("facebook"); setButtonContainer(false); }}/>
 						</ButtonsContainer>
 					)}
 				</ParentContainer>

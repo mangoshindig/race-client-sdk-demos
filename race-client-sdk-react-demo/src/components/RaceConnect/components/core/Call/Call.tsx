@@ -3,10 +3,9 @@ import {
 	CallContainer,
 	CallButtonsContainer,
 	SeperatorParagraph,
-	LabelWithMargin,
-	ButtonsLink
-} from "../index.styles";
-import Icon from "../icons";
+	LabelWithMargin
+} from "../../../assets/index.styles";
+import Icon from "../../../assets/icons";
 import { useConfigContext } from "src/hooks/useConfigContext";
 import { Button } from "@twilio-paste/core/button";
 
@@ -18,10 +17,10 @@ export const Call: FC = () => {
 		<CallContainer>
 			<CallButtonsContainer>
 				<LabelWithMargin>Click to call via your phone.</LabelWithMargin>
-				<ButtonsLink href={`tel:${config?.phoneNumer}`}>
+				<Button variant="secondary" as="a" href={`tel:${config?.phoneNumer}`}>
 					<Icon icon="call" />
 					+44 345 8800 808
-				</ButtonsLink>
+				</Button>
 				<SeperatorParagraph />
 				<LabelWithMargin>
 					Click to call via WebRTC. (WiFi Call)

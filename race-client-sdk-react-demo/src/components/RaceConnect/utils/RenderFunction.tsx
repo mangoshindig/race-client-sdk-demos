@@ -1,4 +1,4 @@
-import Call from "./components/Call"
+import Call from "../components/core/Call/Call"
 
 export const ViewRender = (containerName: string) => {
 

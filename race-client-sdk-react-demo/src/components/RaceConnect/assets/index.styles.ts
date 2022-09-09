@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Icon from "./icons";
 
 const breakpoints = [576, 768, 992, 1200, 1400];
 
@@ -368,7 +367,10 @@ export const CallContainer = styled("div")`
 
 export const CallButtonsContainer = styled("div")``;
 
-export const SeperatorParagraph = styled("hr")``;
+export const SeperatorParagraph = styled("hr")`
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+`;
 
 export const LabelWithMargin = styled("label")`
   background-color: #fff;
