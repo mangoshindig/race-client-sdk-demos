@@ -1,21 +1,22 @@
 import { FC, useEffect } from "react";
 import { Box } from "@twilio-paste/core/box";
 import { VideoButton } from "./components/VideoButton/VideoButton";
-import { useFlexChatContext } from "./hooks/useFlexChatContext";
+// import { useFlexChatContext } from "./hooks/useFlexChatContext";
 import { useVideoContext } from "./hooks/useVideoContext";
 import { VoiceButton } from "./components/VoiceButton/VoiceButton";
 import { useVoiceContext } from "./hooks/useVoiceContext";
 import { useFormContext } from "./hooks/useFormContext";
 import { FormContainer } from "./components/Form/Form";
+import { RaceConnect } from "./components/RaceConnect";
 
 export const DemoApp: FC = () => {
-	const { init: flexChatInit } = useFlexChatContext();
+	// const { init: flexChatInit } = useFlexChatContext();
 	const { init: videoInit } = useVideoContext();
 	const { init: voiceInit } = useVoiceContext();
 	const { init: formInit } = useFormContext();
 
 	useEffect(() => {
-		flexChatInit();
+		// flexChatInit();
 		voiceInit();
 		videoInit();
 		formInit();
@@ -29,6 +30,9 @@ export const DemoApp: FC = () => {
 			</Box>
 			<Box padding="space200">
 				<FormContainer />
+			</Box>
+			<Box>
+				<RaceConnect />
 			</Box>
 		</Box>
 	)

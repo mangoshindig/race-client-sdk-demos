@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "exclude": ["node_modules", "build", "./src/**/*.test.ts", "./src/**/*.test.tsx"],
-  "include": ["./src", "jestTransformer.js"]
+  "include": ["./src", "jestTransformer.js", "custom.d.ts"]
 }
