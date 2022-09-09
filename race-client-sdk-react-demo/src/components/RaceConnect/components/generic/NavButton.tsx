@@ -1,8 +1,8 @@
 import { FC } from "react";
 import {
 	Buttons
-} from "../assets/index.styles";
-import Icon from "../assets/icons";
+} from "../../assets/index.styles";
+import Icon from "../../assets/icons";
 
 interface NavButtonType {
 	icon: string;

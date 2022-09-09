@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { NavButton } from "./components/NavButton";
+import { NavButton } from "./components/generic/NavButton";
 import Icon from "./assets/icons";
 import { ButtonsContainer, Description, HeaderButton, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "./assets/index.styles";
 import { ViewRender } from "./utils/RenderFunction";
