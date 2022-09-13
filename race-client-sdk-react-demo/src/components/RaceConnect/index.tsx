@@ -1,10 +1,16 @@
-import { FC, useEffect, useState } from "react";
-import { NavButton } from "./components/generic/NavButton";
-import Icon from "./assets/icons";
-import { ButtonsContainer, Description, HeaderButton, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "./assets/index.styles";
+import {  FC, useEffect, useState } from "react";
+import { ButtonsContainer, Description, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "./assets/index.styles";
 import { ViewRender } from "./utils/RenderFunction";
+import WidgetLtrGif from "./assets/animated-widget-ltr.gif";
+import WidgetUpGif from "./assets/animated-widget.gif";
+import { HeaderButtonComp } from "./components/generic/HeaderButtonComp";
+import { NavButtonComp } from "./components/generic/NavButtonComp";
 
 export const RaceConnect: FC = () => {
+
+	const WidgetDirection = "ltr";
+	// This will change the direction of the widget from Left2Right to Bottom2Top
+	// const WidgetDirection = "";
 
 	const [showWidget, setShowWidget] = useState(true);
 	const [buttonContainer, setButtonContainer] = useState(false);
@@ -24,7 +30,7 @@ export const RaceConnect: FC = () => {
 					setButtonContainer(true);
 					setParentContainer(true);
 				}}>
-					<Image src="https://cdn.ciptex.com/ciptex-assets/animated-widget-ltr.gif" />
+					<Image src={WidgetDirection ? WidgetLtrGif : WidgetUpGif} />
 				</WidgetButton>
 			) : null}
 			{parentContainer ? (
@@ -33,23 +39,9 @@ export const RaceConnect: FC = () => {
 						<HeaderLogo src="https://cdn.ciptex.com/ciptex-assets/logos/ciptex-dark-logo.png" />
 						<HeaderButtonsContainer>
 							{!buttonContainer && (
-								<HeaderButton onClick={() => {
-									setShowWidget(false);
-									setButtonContainer(true);
-									setParentContainer(true);
-									setContainerName("");
-								}}>
-									<Icon icon="back" view="0 0 448 512" />
-								</HeaderButton>
+								<HeaderButtonComp icon="back" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
 							)}
-							<HeaderButton onClick={() => {
-								setShowWidget(true);
-								setButtonContainer(false);
-								setParentContainer(false);
-								setContainerName("");
-							}}>
-								<Icon icon="close" view="0 0 352 512" />
-							</HeaderButton>
+							<HeaderButtonComp icon="close" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
 						</HeaderButtonsContainer>
 					</HeaderContainer>
 					{ViewRender(containerName)}
@@ -59,12 +51,7 @@ export const RaceConnect: FC = () => {
 								Choose your preferred communication channels to connect with
 								Ciptex.
 							</Description>
-							<NavButton icon="call" title="Call" onClick={() => { setContainerName("call"); setButtonContainer(false); }}/>
-							<NavButton icon="chat" view="0 0 576 512" title="Chat" onClick={() => { setContainerName("chat"); setButtonContainer(false); }}/>
-							<NavButton icon="enquire" title="Enquire" onClick={() => { setContainerName("enquire"); setButtonContainer(false); }}/>
-							<NavButton icon="video" view="0 0 576 512" title="video Chat" onClick={() => { setContainerName("video"); setButtonContainer(false); }}/>
-							<NavButton icon="whatsapp" view="0 0 448 512" title="WhatsApp" onClick={() => { setContainerName("whatsapp"); setButtonContainer(false); }}/>
-							<NavButton icon="facebook" title="Facebook Messenger" onClick={() => { setContainerName("facebook"); setButtonContainer(false); }}/>
+							<NavButtonComp setContainerName={setContainerName} setButtonContainer={setButtonContainer}  />
 						</ButtonsContainer>
 					)}
 				</ParentContainer>
