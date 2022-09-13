@@ -19,20 +19,8 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "noFallthroughCasesInSwitch": true
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "./src/**/*.test.ts",
-    "./src/**/*.test.tsx"
-  ],
-  "include": [
-    "./src",
-    "jestTransformer.js",
-    "custom.d.ts"
-  ]
+  "exclude": ["node_modules", "build", "./src/**/*.test.ts", "./src/**/*.test.tsx"],
+  "include": ["./src", "jestTransformer.js", "custom.d.ts"]
 }

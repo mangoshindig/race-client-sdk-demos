@@ -3,7 +3,6 @@ import { NavButton } from "./components/generic/NavButton";
 import Icon from "./assets/icons";
 import { ButtonsContainer, Description, HeaderButton, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "./assets/index.styles";
 import { ViewRender } from "./utils/RenderFunction";
-import { useConfigContext } from "src/hooks/useConfigContext";
 
 export const RaceConnect: FC = () => {
 
@@ -16,12 +15,6 @@ export const RaceConnect: FC = () => {
 		ViewRender(containerName);
 		console.log(containerName)
 	}, [containerName]);
-
-	const { config } = useConfigContext();
-
-	const videoLink = () => {
-		window.open(config.videoLink);
-	};
 
 	return (
 		<>
@@ -69,7 +62,7 @@ export const RaceConnect: FC = () => {
 							<NavButton icon="call" title="Call" onClick={() => { setContainerName("call"); setButtonContainer(false); }}/>
 							<NavButton icon="chat" view="0 0 576 512" title="Chat" onClick={() => { setContainerName("chat"); setButtonContainer(false); }}/>
 							<NavButton icon="enquire" title="Enquire" onClick={() => { setContainerName("enquire"); setButtonContainer(false); }}/>
-							<NavButton icon="video" view="0 0 576 512" title="Video Chat" onClick={videoLink}/>
+							<NavButton icon="video" view="0 0 576 512" title="video Chat" onClick={() => { setContainerName("video"); setButtonContainer(false); }}/>
 							<NavButton icon="whatsapp" view="0 0 448 512" title="WhatsApp" onClick={() => { setContainerName("whatsapp"); setButtonContainer(false); }}/>
 							<NavButton icon="facebook" title="Facebook Messenger" onClick={() => { setContainerName("facebook"); setButtonContainer(false); }}/>
 						</ButtonsContainer>
