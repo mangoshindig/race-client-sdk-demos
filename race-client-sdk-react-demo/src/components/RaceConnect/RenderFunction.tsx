@@ -1,4 +1,5 @@
 import Call from "./Call/Call"
+import WhatsApp from "./WhatsApp/WhatsApp"
 
 export const ViewRender = (containerName: string) => {
 
@@ -7,9 +8,9 @@ export const ViewRender = (containerName: string) => {
 		return (
 			<Call />
 		)
-	case "video":
+	case "whatsapp":
 		return (
-			<Call />
+			<WhatsApp />
 		)
 	case "chat":
 		return (

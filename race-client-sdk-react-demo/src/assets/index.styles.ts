@@ -29,6 +29,7 @@ export const ParentContainer = styled("div")`
     bottom: 0;
     margin-right: 0;
     border-radius: 0 0 0 0;
+    -webkit-border-radius: 0px 0px 0px 0px;
     overflow: scroll;
   }
 `;
@@ -65,6 +66,7 @@ export const ButtonsContainer = styled("div")`
     align-items: end;
     row-gap: 1rem;
     overflow: scroll;
+    border-radius: 30px 30px 0px 0px;
   }
 `;
 
@@ -109,13 +111,13 @@ export const HeaderButton = styled("a")`
 
 export const Description = styled("p")`
   color: #091e42;
-  font-size: 16px;
+  font-size: 0.9em;
   line-height: normal;
   text-align: start;
   margin-top: 5px;
   margin-bottom: 5px;
   ${mq[0]} {
-    font-size: 20px;
+    font-size: 18px;
   }
 `;
 
@@ -238,7 +240,6 @@ export const Image = styled("img")`
   align-items: center;
   justify-content: center;
   line-height: 25px;
-  margin-right: 15px;
   position: fixed;
   width: 60px;
   height: 60px;
