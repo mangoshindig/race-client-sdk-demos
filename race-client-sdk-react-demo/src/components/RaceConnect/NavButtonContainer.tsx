@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { NavButton } from "./NavButton";
 
 type ButtonProps = {
@@ -30,8 +29,8 @@ export const NavButtonComp = ({ setButtonContainer, setContainerName }: ButtonPr
 			setContainerName("whatsapp");
 			setButtonContainer(false);
 		}} />
-		<NavButton icon="facebook" title="Facebook Messenger" onClick={() => {
-			setContainerName("facebook");
+		<NavButton icon="messenger" title="Messenger" onClick={() => {
+			setContainerName("messenger");
 			setButtonContainer(false);
 		}} />
 	</>);
