@@ -3,7 +3,7 @@ import { Box } from "@twilio-paste/core/box";
 import { useVideoContext } from "./hooks/useVideoContext";
 import { useVoiceContext } from "./hooks/useVoiceContext";
 import { useFormContext } from "./hooks/useFormContext";
-import { RaceConnect } from "./components/RaceConnect";
+import { RaceConnect } from "./components/RaceConnect/WidgetLoader";
 
 export const DemoApp: FC = () => {
 	// const { init: flexChatInit } = useFlexChatContext();
@@ -20,16 +20,7 @@ export const DemoApp: FC = () => {
 
 	return (
 		<Box padding={"space100"}>
-			{/* <Box display="flex" flex="1 1 auto" justifyContent="space-between" width="500px">
-				<VideoButton />
-				<VoiceButton />
-			</Box>
-			<Box padding="space200">
-				<FormContainer />
-			</Box> */}
-			<Box>
-				<RaceConnect />
-			</Box>
+			<RaceConnect />
 		</Box>
 	)
 }

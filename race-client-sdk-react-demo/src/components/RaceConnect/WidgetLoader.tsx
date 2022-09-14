@@ -1,10 +1,10 @@
 import {  FC, useEffect, useState } from "react";
-import { ButtonsContainer, Description, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "./assets/index.styles";
-import { ViewRender } from "./utils/RenderFunction";
-import WidgetLtrGif from "./assets/animated-widget-ltr.gif";
-import WidgetUpGif from "./assets/animated-widget.gif";
-import { HeaderButtonComp } from "./components/generic/HeaderButtonComp";
-import { NavButtonComp } from "./components/generic/NavButtonComp";
+import { ButtonsContainer, Description, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "../../assets/index.styles";
+import { ViewRender } from "./RenderFunction";
+import WidgetLtrGif from "../../assets/animated-widget-ltr.gif";
+import WidgetUpGif from "../../assets/animated-widget.gif";
+import { HeaderButtonComp } from "./HeaderButtonContainer";
+import { NavButtonComp } from "./NavButtonContainer";
 
 export const RaceConnect: FC = () => {
 
@@ -19,7 +19,6 @@ export const RaceConnect: FC = () => {
 
 	useEffect(() => {
 		ViewRender(containerName);
-		console.log(containerName)
 	}, [containerName]);
 
 	return (
