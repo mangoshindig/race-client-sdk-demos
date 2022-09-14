@@ -19,7 +19,7 @@ export const DemoApp: FC = () => {
 	}, []);
 
 	return (
-		<Box padding={"space100"}>
+		<Box>
 			<RaceConnect />
 		</Box>
 	)

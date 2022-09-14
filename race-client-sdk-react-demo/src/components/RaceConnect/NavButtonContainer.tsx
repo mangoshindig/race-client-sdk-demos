@@ -21,7 +21,7 @@ export const NavButtonComp = ({ setButtonContainer, setContainerName }: ButtonPr
 			setContainerName("enquire");
 			setButtonContainer(false);
 		}} />
-		<NavButton icon="video" view="0 0 576 512" title="video Chat" onClick={() => {
+		<NavButton icon="video" view="0 0 576 512" title="Video Chat" onClick={() => {
 			setContainerName("video");
 			setButtonContainer(false);
 		}} />

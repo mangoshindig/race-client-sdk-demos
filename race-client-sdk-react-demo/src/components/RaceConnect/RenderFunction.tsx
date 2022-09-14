@@ -1,6 +1,7 @@
 import Call from "./Call/Call"
 import Enquire from "./Enquire/Enquire"
 import Messenger from "./Messenger/Messenger"
+import Video from "./Video/Video"
 import WhatsApp from "./WhatsApp/WhatsApp"
 
 export const ViewRender = (containerName: string) => {
@@ -21,6 +22,10 @@ export const ViewRender = (containerName: string) => {
 	case "enquire":
 		return (
 			<Enquire />
+		)
+	case "video":
+		return (
+			<Video />
 		)
 	default:
 		return (

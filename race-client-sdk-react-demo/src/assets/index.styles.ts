@@ -21,7 +21,7 @@ export const ParentContainer = styled("div")`
   position: fixed;
   height: 520px;
   width: 100vw;
-  z-index: 200;
+  z-index: 10;
   ${mq[0]} {
     max-width: 100%;
     height: 100%;
@@ -226,7 +226,7 @@ export const WidgetButton = styled("a")`
   position: fixed;
   width: 70px;
   height: 70px;
-  z-index: 201;
+  z-index: 11;
   padding: 10px;
   cursor: pointer;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
@@ -244,7 +244,7 @@ export const Image = styled("img")`
   width: 60px;
   height: 60px;
   cursor: pointer;
-  z-index: 201;
+  z-index: 11;
 `;
 
 export const FormContainer = styled("form")`

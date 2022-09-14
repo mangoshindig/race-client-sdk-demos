@@ -5,7 +5,7 @@ import { ACCOUNT_SID, FORM_ID } from "../../constants";
 
 export type FormContextType = {
 	init: () => void;
-    formContainer: (node: HTMLDivElement) => void;
+	formContainer: (node: HTMLDivElement) => void;
 };
 
 export const FormContext: Context<FormContextType> = createContext<FormContextType>(null!);
@@ -13,10 +13,12 @@ export const FormContext: Context<FormContextType> = createContext<FormContextTy
 export const FormProvider: FC<ReactElementProps> = ({ children }: ReactElementProps) => {
 	const [form, setForm] = useState<Form>();
 	const [localformContainer, setLocalFormContainer] = useState<HTMLDivElement>();
-	const [ isReady, setIsReady ] = useState<boolean>(false);
+	const [isReady, setIsReady] = useState<boolean>(false);
 
 	const formContainer = useCallback((node: HTMLDivElement | null) => {
-		if (node && node !== null) { setLocalFormContainer(node); }
+		if (node && node !== null) {
+			setLocalFormContainer(node);
+		}
 	}, []);
 
 	useEffect(() => {
@@ -28,12 +30,12 @@ export const FormProvider: FC<ReactElementProps> = ({ children }: ReactElementPr
 				}
 			});
 		}
-	}, [ isReady, form, formContainer ]);
+	}, [isReady, form, formContainer]);
 
 	const init = async () => {
 		try {
-			if(!ACCOUNT_SID || !FORM_ID) {
-				throw new Error ("Missing ACCOUNT_SID or FORM_ID Variables");
+			if (!ACCOUNT_SID || !FORM_ID) {
+				throw new Error("Missing ACCOUNT_SID or FORM_ID Variables");
 			}
 
 			const v = new Form({
