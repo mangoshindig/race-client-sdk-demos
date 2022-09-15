@@ -4,9 +4,8 @@ import { useFormContext } from "src/hooks/useFormContext";
 
 export const FormContainer: FC = () => {
 	const { formContainer } = useFormContext();
-	return (
-		<Box ref={formContainer}>
 
-		</Box>
+	return (
+		<Box ref={formContainer} />
 	);
 }

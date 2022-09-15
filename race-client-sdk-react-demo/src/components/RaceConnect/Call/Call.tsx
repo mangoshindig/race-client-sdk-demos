@@ -8,6 +8,7 @@ import {
 import Icon from "../../../assets/icons";
 import { useConfigContext } from "src/hooks/useConfigContext";
 import { Button } from "@twilio-paste/core/button";
+import { CallButton } from "./CallButton";
 
 export const Call: FC = () => {
 
@@ -25,10 +26,7 @@ export const Call: FC = () => {
 				<LabelWithMargin>
 					Click to call via WebRTC. (WiFi Call)
 				</LabelWithMargin>
-				<Button variant="secondary">
-					<Icon icon="call" />
-					WebRTC Call
-				</Button>
+				<CallButton />
 			</CallButtonsContainer>
 			{/* {hangUpButton ? (
 					<Button onClick={() => disconnect()} variant="primary">

@@ -248,6 +248,41 @@ export const Image = styled("img")`
 `;
 
 export const FormContainer = styled("form")`
+.form-ui-btn.form-ui-btn-primary {
+  box-sizing: border-box;
+  width: auto;
+  appearance: none;
+  background: none rgb(255, 255, 255);
+  display: inline-block;
+  border: none;
+  outline: none;
+  transition: background-color 100ms ease-in 0s, box-shadow 100ms ease-in 0s, color 100ms ease-in 0s;
+  font-family: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  margin: 0px;
+  cursor: pointer;
+  color: rgb(18, 28, 45);
+  box-shadow: rgb(136, 145, 170) 0px 0px 0px 1px;
+  padding: 0.5rem;
+  border-radius: 4px;
+  float: right;
+
+  &:hover {
+    text-decoration: none;
+    color: rgb(3, 11, 93);
+    background-color: rgb(235, 244, 255);
+    box-shadow: rgb(3, 11, 93) 0px 0px 0px 1px;
+  }
+
+  &:active {
+    text-decoration: none !important;
+    box-shadow: rgb(3, 11, 93) 0px 0px 0px 1px !important;
+    color: rgb(3, 11, 93) !important;
+    background-color: rgb(204, 228, 255) !important;
+  }
+}
   background-color: #fff;
   border-radius: 30px 30px;
   width: 100%;
@@ -259,6 +294,8 @@ export const FormContainer = styled("form")`
   flex-wrap: nowrap;
   justify-content: space-between;
   row-gap: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
   ${mq[0]} {
     padding: 1.5em;
   }
@@ -463,4 +500,16 @@ export const FlexWebChatContainer = styled("div")`
   .Twilio.Twilio-EntryPoint {
     display: none;
   }
+`;
+
+export const WebCallContainer = styled("div")`
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  column-gap: 1em;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f4f5f7;
+  border-radius: 15px;
+  margin-top: 1.5em;
 `;
