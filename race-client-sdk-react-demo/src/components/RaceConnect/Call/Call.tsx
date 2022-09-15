@@ -28,11 +28,6 @@ export const Call: FC = () => {
 				</LabelWithMargin>
 				<CallButton />
 			</CallButtonsContainer>
-			{/* {hangUpButton ? (
-					<Button onClick={() => disconnect()} variant="primary">
-						<Icon view="0 0 640 512" color="#fff" icon="hangup" />
-					</Button>
-				) : null} */}
 		</CallContainer>
 	);
 }
