@@ -1,4 +1,5 @@
 import Call from "./Call/Call"
+import Chat from "./Chat/Chat"
 import Enquire from "./Enquire/Enquire"
 import Messenger from "./Messenger/Messenger"
 import Video from "./Video/Video"
@@ -26,6 +27,10 @@ export const ViewRender = (containerName: string) => {
 	case "video":
 		return (
 			<Video />
+		)
+	case "chat":
+		return (
+			<Chat />
 		)
 	default:
 		return (

@@ -11,9 +11,7 @@ export const Enquire: FC = () => {
 
 	return (
 		<CallContainer>
-			<Box ref={formContainer}>
-
-			</Box>
+			<Box ref={formContainer} />
 		</CallContainer>
 	);
 }

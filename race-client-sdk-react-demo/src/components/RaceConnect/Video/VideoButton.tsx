@@ -27,14 +27,13 @@ export const VideoButton: FC = () => {
 
 					</Box>
 					<Box ref={remoteVideoMedia} position="relative" borderRadius="borderRadius30" overflow="hidden" zIndex="zIndex50">
-
 					</Box>
 				</Box>
 			</ModalBody>
 			<ModalFooter>
 				<ModalFooterActions>
 					{isMuted ? <UnmuteButton /> : <MuteButton />}
-					<Button variant="destructive" size="icon" onClick={disconnect}><CloseIcon decorative={true}/>End Call</Button>
+					<Button variant="destructive" size="icon" onClick={disconnect}><CloseIcon decorative={true} />End Call</Button>
 				</ModalFooterActions>
 			</ModalFooter>
 		</Modal></>)
