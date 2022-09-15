@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { Button } from "@twilio-paste/core/button";
 import { Modal, ModalHeader, ModalHeading, ModalBody, ModalFooter, ModalFooterActions } from "@twilio-paste/core/modal";
-import { ProductVideoIcon } from "@twilio-paste/icons/esm/ProductVideoIcon";
 import { useUID } from "@twilio-paste/core/uid-library";
 import { Box } from "@twilio-paste/core/box";
 import { useVideoContext } from "../../../hooks/useVideoContext";
 import { MuteButton } from "./MuteButton";
 import { UnmuteButton } from "./UnmuteButton";
 import Icon from "../../../assets/icons";
+import { CloseIcon } from "@twilio-paste/icons/esm/CloseIcon";
 
 export const VideoButton: FC = () => {
 	const { video, isMuted, isOpen, localVideoMedia, remoteVideoMedia, connect, disconnect } = useVideoContext();
@@ -34,6 +34,7 @@ export const VideoButton: FC = () => {
 			<ModalFooter>
 				<ModalFooterActions>
 					{isMuted ? <UnmuteButton /> : <MuteButton />}
+					<Button variant="destructive" size="icon" onClick={disconnect}><CloseIcon decorative={true}/>End Call</Button>
 				</ModalFooterActions>
 			</ModalFooter>
 		</Modal></>)
