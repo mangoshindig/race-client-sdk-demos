@@ -6,12 +6,13 @@
 /* global document */
 
 let video;
+let videoReady = false;
 function VideoInit() {
 	video = new RaceSDK.Video({ accountSid: ACCOUNT_SID, identity: IDENTITY });
 
 	video.on("video#ready", () => {
 		console.log("Video ready");
-		document.getElementById("video-call-btn").disabled = false;
+		videoReady = true;
 	});
 
 	video.on("video#created", () => {

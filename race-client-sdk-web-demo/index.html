@@ -3,8 +3,10 @@
     <head>
         <script src="env.js"></script>
     </head>
-    <body onload="FormInit(); FlexChatInit(); VoiceInit(); VideoInit();">
+    <body onload="SyncInit();FormInit(); FlexChatInit(); VoiceInit(); VideoInit();">
         <h1>Javascript Race Client SDK Demonstration</h1>
+
+        <h2 id="status-label"></h2>
 
         <div style="max-width: 1000px; height: 100%; max-height: 1000px; padding: 20px; padding-bottom: 0px">
             <button id="video-call-btn" disabled onclick="VideoCallMe()">Video CALL</button>
@@ -30,7 +32,8 @@
 
         </div>
 
-        <script src="https://cdn.ciptex.com/race-client-sdk/1.11.1/race-client-sdk.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.ciptex.com/race-client-sdk/1.14.0/race-client-sdk.min.js" crossorigin="anonymous"></script>
+        <script src="sync.js"></script>
         <script src="form.js"></script>
         <script src="flexchat.js"></script>
         <script src="video.js"></script>

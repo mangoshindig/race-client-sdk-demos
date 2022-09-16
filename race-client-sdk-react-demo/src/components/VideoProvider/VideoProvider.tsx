@@ -1,7 +1,7 @@
 import { Context, createContext, FC, useCallback, useEffect, useState } from "react";
 import { TwilioVideo, Video } from "@ciptex/race-client-sdk";
 import { ReactElementProps } from "../../interface";
-import { ACCOUNT_SID, IDENTITY } from "../../constants";
+import { ACCOUNT_SID, IDENTITY, KIOSK_ID } from "../../constants";
 
 export type VideoContextType = {
 	video?: Video;
@@ -72,13 +72,14 @@ export const VideoProvider: FC<ReactElementProps> = ({ children }: ReactElementP
 
 	const init = (): void => {
 		try {
-			if(!ACCOUNT_SID || !IDENTITY) {
-				throw new Error ("Missing ACCOUNT_SID or IDENTITY Variables");
+			if(!ACCOUNT_SID || !IDENTITY || !KIOSK_ID) {
+				throw new Error ("Missing ACCOUNT_SID or IDENTITY or KIOSK_ID Variables");
 			}
 
 			const v = new Video({
 				accountSid: ACCOUNT_SID,
-				identity: IDENTITY
+				identity: IDENTITY,
+				kioskId: KIOSK_ID
 			});
 
 			v.on("video#ready", () => {

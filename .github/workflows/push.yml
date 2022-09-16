@@ -41,6 +41,7 @@ jobs:
           REACT_APP_VOICE_APP_SID: ${{ secrets.REACT_APP_VOICE_APP_SID }}
           REACT_APP_FLEXCHAT_FLOW_SID: ${{ secrets.REACT_APP_FLEXCHAT_FLOW_SID }}
           REACT_APP_FORM_ID: ${{ secrets.REACT_APP_FORM_ID }}
+          REACT_APP_KIOSK_ID: ${{ secrets.REACT_APP_KIOSK_ID }}
           REACT_APP_VOICE_APP_CLI: ${{ secrets.REACT_APP_VOICE_APP_CLI }}
           REACT_APP_IDENTITY: ${{ secrets.REACT_APP_IDENTITY }}
 
@@ -67,7 +68,7 @@ jobs:
           token: ${{ secrets.BOT_PAT_TOKEN }}
 
       - name: Create env_file
-        run: echo "const ACCOUNT_SID='${{ secrets.REACT_APP_ACCOUNT_SID }}';const VOICE_APP_SID='${{ secrets.REACT_APP_VOICE_APP_SID }}';const FLEXCHAT_FLOW_SID='${{ secrets.REACT_APP_FLEXCHAT_FLOW_SID }}';const FORM_ID='${{ secrets.REACT_APP_FORM_ID }}';const VOICE_APP_CLI='${{ secrets.REACT_APP_VOICE_APP_CLI }}';const IDENTITY='${{ secrets.REACT_APP_IDENTITY }}';" > env.js
+        run: echo "const ACCOUNT_SID='${{ secrets.REACT_APP_ACCOUNT_SID }}';const VOICE_APP_SID='${{ secrets.REACT_APP_VOICE_APP_SID }}';const FLEXCHAT_FLOW_SID='${{ secrets.REACT_APP_FLEXCHAT_FLOW_SID }}';const FORM_ID='${{ secrets.REACT_APP_FORM_ID }}'; const KIOSK_ID='${{ secrets.REACT_APP_KIOSK_ID }}'; const VOICE_APP_CLI='${{ secrets.REACT_APP_VOICE_APP_CLI }}';const IDENTITY='${{ secrets.REACT_APP_IDENTITY }}';" > env.js
 
       - name: Publish
         uses: cloudflare/pages-action@1

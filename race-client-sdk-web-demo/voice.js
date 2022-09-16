@@ -8,12 +8,13 @@
 /* global IDENTITY */
 
 let voice;
+let voiceReady;
 function VoiceInit() {
 	voice = new RaceSDK.Voice({ accountSid: ACCOUNT_SID, identity: IDENTITY, voiceAppSid: VOICE_APP_SID });
 
 	voice.on("voice#ready", () => {
 		console.log("Voice ready");
-		document.getElementById("voice-call-btn").disabled = false;
+		voiceReady = true;
 	});
 
 	voice.on("voice#status", (state) => {
