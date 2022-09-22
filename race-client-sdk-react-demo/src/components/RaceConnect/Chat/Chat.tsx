@@ -3,35 +3,20 @@ import {
 	CallContainer
 } from "../../../assets/index.styles";
 import * as FlexWebChat from "@twilio/flex-webchat-ui";
-import { ACCOUNT_SID, FLEXCHAT_FLOW_SID } from "src/constants";
-import ChatManager from "./ChatManager";
+import ChatManager from "./ChatManagerTwilio";
 import { Flex, Spinner } from "@twilio-paste/core";
+import { useConfigContext } from "src/hooks/useConfigContext";
 
 export const Chat: FC = () => {
 
+	const { webChatConfig } = useConfigContext();
 	const [managerSetup, setManagerSetup] = useState<FlexWebChat.Manager | undefined>();
-	const [webChatConfig, setWebChatConfig] = useState<any>();
-
-
-	const setupManager = (config: any) => {
-		FlexWebChat.Manager.create(config).then((manager) => setManagerSetup(manager));
-		console.log(managerSetup);
-	};
-
-	const getConfig = async () => {
-		// set response to the result of calling the async function
-		const response = await fetch(
-			`https://api.ciptex.com/race/${ACCOUNT_SID}/webchat/${FLEXCHAT_FLOW_SID}/config`
-		);
-
-		setWebChatConfig(await response.json());
-		setupManager(webChatConfig);
-	};
 
 
 	useEffect(() => {
-		getConfig();
-	}, [managerSetup]);
+		FlexWebChat.Manager.create(webChatConfig).then((manager) => setManagerSetup(manager));
+		console.log(managerSetup);
+	}, []);
 
 	return (
 		<CallContainer>

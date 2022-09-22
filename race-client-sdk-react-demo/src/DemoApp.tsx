@@ -4,6 +4,7 @@ import { useVideoContext } from "./hooks/useVideoContext";
 import { useVoiceContext } from "./hooks/useVoiceContext";
 import { useFormContext } from "./hooks/useFormContext";
 import { RaceConnect } from "./components/RaceConnect/WidgetLoader";
+// import { useFlexChatContext } from "./hooks/useFlexChatContext";
 
 export const DemoApp: FC = () => {
 	// const { init: flexChatInit } = useFlexChatContext();

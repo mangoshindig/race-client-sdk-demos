@@ -8,15 +8,22 @@ export type FlexWebChatContainerProps = {
   manager: FlexWebChat.Manager;
 };
 
-export const ChatManager = ({ manager }: FlexWebChatContainerProps) => {
+export const ChatManagerTwilio = ({ manager }: FlexWebChatContainerProps) => {
+
 
 	useEffect(() => {
 		const button = document.querySelector<HTMLButtonElement>(".Twilio.Twilio-EntryPoint");
 		if (button) {
-			button.style.display = "none";
-			button.click();
+			if (button.style.display === "none") {
+				button.click();
+				button.click();
+			} else {
+				button.style.display === "none";
+				button.click();
+				button.click();
+			}
 		}
-	}, []);
+	}, [manager]);
 
 
 	return (
@@ -28,4 +35,4 @@ export const ChatManager = ({ manager }: FlexWebChatContainerProps) => {
 	);
 };
 
-export default ChatManager;
+export default ChatManagerTwilio;
