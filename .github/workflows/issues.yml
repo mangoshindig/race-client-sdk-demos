@@ -1,0 +1,43 @@
+name: new issue
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  notify-core-platform-team:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check-issue-type-is-bug
+        if: ${{ github.event.issue.labels[0].name == 'bug' }}
+        run: |
+            echo "Issue raised is a ${{ github.event.issue.labels[0].name }}, setting theme_color to red"
+            echo "theme_color=d73a4a" >> $GITHUB_ENV
+
+      - name: check-issue-type-is-enhancement
+        if: ${{ github.event.issue.labels[0].name == 'enhancement' }}
+        run: |
+            echo "Issue raised is a ${{ github.event.issue.labels[0].name }}, setting theme_color to neon blue"
+            echo "theme_color=a2eeef" >> $GITHUB_ENV
+
+      - name: check-issue-type-is-help_wanted
+        if: ${{ github.event.issue.labels[0].name == 'help wanted' }}
+        run: |
+            echo "Issue raised is a ${{ github.event.issue.labels[0].name }}, setting theme_color to green"
+            echo "theme_color=008672" >> $GITHUB_ENV
+
+      - name: check-issue-type-is-question
+        if: ${{ github.event.issue.labels[0].name == 'question' }}
+        run: |
+            echo "Issue raised is a ${{ github.event.issue.labels[0].name }}, setting theme_color to purple"
+            echo "theme_color=d876e3" >> $GITHUB_ENV
+
+      - name: send-teams-message
+        uses: aliencube/microsoft-teams-actions@v0.8.0
+        with:
+          webhook_uri: ${{ secrets.MSTEAMS_WEBHOOK_URI }}
+          title: "Issue ${{ github.event.action }}: ${{ github.event.issue.title }}"
+          summary: Issue ${{ github.event.action }} for ${{ github.event.repository.name }}
+          text: ${{ github.event.sender.login }} ${{ github.event.action }} this issue on ${{ github.event.repository.full_name }} · ${{ github.event.issue.comments }} comments
+          theme_color: ${{ env.theme_color }}
+          sections: '[{"activityTitle": "${{ github.event.issue.user.login }}","activitySubtitle": "${{ github.event.issue.created_at }}","activityImage": "${{ github.event.issue.user.avatar_url }}", "facts":[{"name": "Labels:", "value": "${{ github.event.issue.labels[0].name }}"},{"name": "ID:", "value": "${{ github.event.issue.number }}"},{"name": "Assigned to:", "value": "${{ github.event.issue.assignees[0].login }}"}],"activityText": "${{ github.event.issue.body }}"}]'
+          actions: '[{ "@type": "OpenUri", "name": "View issue", "targets": [{ "os": "default", "uri": "${{ github.event.issue.html_url }}" }] },{ "@type": "OpenUri", "name": "View repo", "targets": [{ "os": "default", "uri": "https://github.com/${{ github.event.repository.full_name }}" }] }]'
