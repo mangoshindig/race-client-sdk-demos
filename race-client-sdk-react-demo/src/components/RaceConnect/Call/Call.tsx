@@ -32,5 +32,4 @@ export const Call: FC = () => {
 	);
 }
 
-
 export default Call;

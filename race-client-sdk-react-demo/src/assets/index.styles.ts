@@ -500,6 +500,9 @@ export const FlexWebChatContainer = styled("div")`
   .Twilio.Twilio-EntryPoint {
     display: none;
   }
+  .Twilio.Twilio-EntryPoint-Tagline {
+    paddingTop: 0 !important;
+  }
 `;
 
 export const WebCallContainer = styled("div")`

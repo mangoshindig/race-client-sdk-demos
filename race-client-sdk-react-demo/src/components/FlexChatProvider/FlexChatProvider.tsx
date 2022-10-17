@@ -29,6 +29,7 @@ export const FlexChatProvider: FC<ReactElementProps> = ({ children }: ReactEleme
 				setFlexChat(v);
 				v.init();
 			});
+
 		} catch (error) {
 			console.error("[Client] ", error);
 		}

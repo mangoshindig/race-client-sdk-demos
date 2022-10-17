@@ -12,7 +12,6 @@ export const Enquire: FC = () => {
 		formInit();
 	}, []);
 
-
 	return (
 		<FormContainer>
 			{/* <Flex vAlignContent="center" hAlignContent="center" height="100%">

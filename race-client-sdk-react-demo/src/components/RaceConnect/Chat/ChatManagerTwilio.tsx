@@ -3,6 +3,7 @@ import {
 	FlexWebChatContainer
 } from "../../../assets/index.styles";
 import * as FlexWebChat from "@twilio/flex-webchat-ui";
+import { Actions } from "@twilio/flex-webchat-ui";
 
 export type FlexWebChatContainerProps = {
   manager: FlexWebChat.Manager;
@@ -10,21 +11,14 @@ export type FlexWebChatContainerProps = {
 
 export const ChatManagerTwilio = ({ manager }: FlexWebChatContainerProps) => {
 
-
 	useEffect(() => {
 		const button = document.querySelector<HTMLButtonElement>(".Twilio.Twilio-EntryPoint");
 		if (button) {
-			if (button.style.display === "none") {
-				button.click();
-				button.click();
-			} else {
-				button.style.display === "none";
-				button.click();
-				button.click();
-			}
+			button.style.display = "none";
+			button.click();
+			Actions.invokeAction("SetEngagementStatus", { status: "connected" });
 		}
 	}, [manager]);
-
 
 	return (
 		<FlexWebChatContainer>

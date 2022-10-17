@@ -12,11 +12,12 @@ export const Chat: FC = () => {
 	const { webChatConfig } = useConfigContext();
 	const [managerSetup, setManagerSetup] = useState<FlexWebChat.Manager | undefined>();
 
-
 	useEffect(() => {
-		FlexWebChat.Manager.create(webChatConfig).then((manager) => setManagerSetup(manager));
-		console.log(managerSetup);
-	}, []);
+		if (managerSetup === undefined) {
+			FlexWebChat.Manager.create(webChatConfig).then((manager) => setManagerSetup(manager));
+			console.log(managerSetup + " manager setup");
+		}
+	}, [managerSetup, webChatConfig]);
 
 	return (
 		<CallContainer>
