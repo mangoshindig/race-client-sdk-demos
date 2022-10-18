@@ -143,6 +143,7 @@ export const Buttons = styled("button")`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   column-gap: 0.6em;
   &:hover {
     background: #f9fafb;
@@ -515,4 +516,19 @@ export const WebCallContainer = styled("div")`
   background-color: #f4f5f7;
   border-radius: 15px;
   margin-top: 1.5em;
+`;
+
+export const NotificationTag = styled("span")`
+  width: 15px;
+  height: 15px;
+  padding: 0.80em;
+  border-radius: 50%;
+  background-color: #e62143;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #fff;
+  font-size: 0.75em;
+  font-weight: 700;
 `;

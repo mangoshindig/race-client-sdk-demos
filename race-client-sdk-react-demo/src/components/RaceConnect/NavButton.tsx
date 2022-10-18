@@ -3,6 +3,8 @@ import {
 	Buttons
 } from "../../assets/index.styles";
 import Icon from "../../assets/icons";
+// import { NotificationIndicator } from "./NotificationIndicator";
+import { Box } from "@twilio-paste/core";
 
 interface NavButtonType {
 	icon: string;
@@ -14,8 +16,11 @@ interface NavButtonType {
 export const NavButton: FC<NavButtonType> = ({ icon, view, title, onClick }) => {
 	return (
 		<Buttons onClick={onClick}>
-			<Icon icon={icon} view={view}/>
-			{title}
+			<Box display="flex" columnGap="space40">
+				<Icon icon={icon} view={view}/>
+				{title}
+			</Box>
+			{/* {title === "Chat" ? <NotificationIndicator /> : null} */}
 		</Buttons>
 	);
 };

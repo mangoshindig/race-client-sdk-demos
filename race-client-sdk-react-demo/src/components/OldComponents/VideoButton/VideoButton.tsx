@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalHeading, ModalBody, ModalFooter, ModalFooterAc
 import { ProductVideoIcon } from "@twilio-paste/icons/esm/ProductVideoIcon";
 import { useUID } from "@twilio-paste/core/uid-library";
 import { Box } from "@twilio-paste/core/box";
-import { useVideoContext } from "../../hooks/useVideoContext";
+import { useVideoContext } from "../../../hooks/useVideoContext";
 import { MuteButton } from "./MuteButton";
 import { UnmuteButton } from "./UnmuteButton";
 
@@ -13,7 +13,7 @@ export const VideoButton: FC = () => {
 	const modalHeadingID = useUID();
 
 	return (<>
-		<Button variant="primary" onClick={connect} loading={!video?.ready}><ProductVideoIcon decorative={true} /> Start Video Call</Button>
+		<Button variant="primary" size="default" onClick={connect} loading={!video?.ready}><ProductVideoIcon decorative={true} /> Start Video Call</Button>
 		<Modal ariaLabelledby={modalHeadingID} isOpen={isOpen} onDismiss={disconnect} size="wide">
 			<ModalHeader>
 				<ModalHeading as="h3" id={modalHeadingID}>Video Call Us</ModalHeading>

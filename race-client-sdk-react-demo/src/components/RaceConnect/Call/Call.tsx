@@ -12,6 +12,7 @@ import { CallButton } from "./CallButton";
 
 export const Call: FC = () => {
 
+	// Grabbing the config from the ConfigProvider, this includes to number.
 	const { config } = useConfigContext();
 
 	return (
@@ -20,7 +21,7 @@ export const Call: FC = () => {
 				<LabelWithMargin>Click to call via your phone.</LabelWithMargin>
 				<Button variant="secondary" as="a" href={`tel:${config?.phoneNumer}`}>
 					<Icon icon="call" />
-					+44 345 8800 808
+					Click to call
 				</Button>
 				<SeperatorParagraph />
 				<LabelWithMargin>

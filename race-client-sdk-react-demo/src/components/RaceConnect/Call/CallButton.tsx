@@ -10,7 +10,7 @@ export const CallButton: FC = () => {
 	const { connect, voice, disconnect, status, isMuted } = useVoiceContext();
 
 	useEffect(() => {
-		console.log(status)
+		console.log(status);
 	}, [status]);
 
 	return (

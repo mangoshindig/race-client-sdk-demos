@@ -5,17 +5,19 @@ import WidgetLtrGif from "../../assets/animated-widget-ltr.gif";
 import WidgetUpGif from "../../assets/animated-widget.gif";
 import { HeaderButtonComp } from "./HeaderButtonContainer";
 import { NavButtonComp } from "./NavButtonContainer";
+import { useConfigContext } from "src/hooks/useConfigContext";
 
 export const RaceConnect: FC = () => {
 
 	const WidgetDirection = "ltr";
-	// This will change the direction of the widget from Left2Right to Bottom2Top
+	// This will change the direction of the widget from Left to Right to Bottom to Top
 	// const WidgetDirection = "";
 
 	const [showWidget, setShowWidget] = useState(true);
 	const [buttonContainer, setButtonContainer] = useState(false);
 	const [parentContainer, setParentContainer] = useState(false);
 	const [containerName, setContainerName] = useState("");
+	const { config } = useConfigContext();
 
 	useEffect(() => {
 		ViewRender(containerName);
@@ -35,7 +37,7 @@ export const RaceConnect: FC = () => {
 			{parentContainer ? (
 				<ParentContainer>
 					<HeaderContainer>
-						<HeaderLogo src="https://cdn.ciptex.com/ciptex-assets/logos/ciptex-dark-logo.png" />
+						<HeaderLogo src={config?.logoUrl} />
 						<HeaderButtonsContainer>
 							{!buttonContainer && (
 								<HeaderButtonComp icon="back" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
@@ -48,7 +50,7 @@ export const RaceConnect: FC = () => {
 						<ButtonsContainer>
 							<Description>
 								Choose your preferred communication channels to connect with
-								Ciptex.
+								us.
 							</Description>
 							<NavButtonComp setContainerName={setContainerName} setButtonContainer={setButtonContainer}  />
 						</ButtonsContainer>

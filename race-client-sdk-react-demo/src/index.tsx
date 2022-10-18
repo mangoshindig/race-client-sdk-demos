@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { render } from "react-dom";
 import { ConfigProvider } from "./components/ConfigProvider/ConfigProvider";
-// import { FlexChatProvider } from "./components/FlexChatProvider/FlexChatProvider";
+import { FlexChatProviderReact } from "./components/FlexChatProvider/FlexChatProviderReact";
 import { FormProvider } from "./components/FormProvider/FormProvider";
 import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider";
 import { VideoProvider } from "./components/VideoProvider/VideoProvider";
@@ -14,11 +14,11 @@ render(
 			<ConfigProvider>
 				<VideoProvider>
 					<VoiceProvider>
-						{/* <FlexChatProvider> */}
 						<FormProvider>
-							<DemoApp />
+							<FlexChatProviderReact>
+								<DemoApp />
+							</FlexChatProviderReact>
 						</FormProvider>
-						{/* </FlexChatProvider> */}
 					</VoiceProvider>
 				</VideoProvider>
 			</ConfigProvider>

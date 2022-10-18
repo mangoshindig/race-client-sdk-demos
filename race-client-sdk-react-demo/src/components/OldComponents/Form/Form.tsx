@@ -3,6 +3,8 @@ import { FC } from "react";
 import { useFormContext } from "src/hooks/useFormContext";
 
 export const FormContainer: FC = () => {
+
+	// Grabbing the form from the FormProvider.
 	const { formContainer } = useFormContext();
 
 	return (

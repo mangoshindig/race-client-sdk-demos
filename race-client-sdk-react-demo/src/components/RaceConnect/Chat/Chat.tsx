@@ -1,23 +1,15 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import {
 	CallContainer
 } from "../../../assets/index.styles";
-import * as FlexWebChat from "@twilio/flex-webchat-ui";
 import ChatManager from "./ChatManagerTwilio";
 import { Flex, Spinner } from "@twilio-paste/core";
-import { useConfigContext } from "src/hooks/useConfigContext";
+import { useFlexChatReactContext } from "src/hooks/FlexChatProviderReactContext";
 
 export const Chat: FC = () => {
 
-	const { webChatConfig } = useConfigContext();
-	const [managerSetup, setManagerSetup] = useState<FlexWebChat.Manager | undefined>();
-
-	useEffect(() => {
-		if (managerSetup === undefined) {
-			FlexWebChat.Manager.create(webChatConfig).then((manager) => setManagerSetup(manager));
-			console.log(managerSetup + " manager setup");
-		}
-	}, [managerSetup, webChatConfig]);
+	// Passing the manager to the ChatManager component in order to load the chat.
+	const { managerSetup } = useFlexChatReactContext();
 
 	return (
 		<CallContainer>

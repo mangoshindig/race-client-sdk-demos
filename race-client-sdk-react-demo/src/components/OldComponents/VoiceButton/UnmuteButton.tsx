@@ -1,7 +1,7 @@
 import { Button } from "@twilio-paste/core/button";
 import { MicrophoneOnIcon } from "@twilio-paste/icons/esm/MicrophoneOnIcon";
 import { FC } from "react";
-import { useVoiceContext } from "../../hooks/useVoiceContext";
+import { useVoiceContext } from "../../../hooks/useVoiceContext";
 
 export const UnmuteButton: FC = () => {
 	const { voice } = useVoiceContext();
