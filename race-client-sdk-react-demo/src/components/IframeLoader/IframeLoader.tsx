@@ -1,17 +1,20 @@
-import { Anchor, Box, Button, HelpText, Input, Label, Toaster, useToaster } from "@twilio-paste/core";
+import { Anchor, Box, Button, FilePicker, FilePickerButton, HelpText, Input, Label, Toaster, useToaster } from "@twilio-paste/core";
 import {  FC, useState } from "react";
+import { APIKEY } from "src/constants";
 
 
 export const IframeLoader: FC = () => {
 
 	const toaster = useToaster();
 	const [url, setUrl] = useState<string>("");
+	const [apiKey] = useState<string>(APIKEY || "");
+	const [img, setImg] = useState<string>("");
+	const [file, setFile] = useState()
 
 	const handleChange = (e: any) => {
 		setUrl(e.target.value);
 	}
 
-	// create a function to check url is valid or not
 	const isValidUrl = (string: string) => {
 		try {
 			new URL(string);
@@ -20,6 +23,60 @@ export const IframeLoader: FC = () => {
 		}
 		return true;
 	}
+
+	// convert file to img url using URL.createObjectURL
+	const handleFileChange = (e: any) => {
+		const file = e.target.files[0];
+		setFile(file);
+		const url = URL.createObjectURL(file);
+		setImg(url);
+	}
+
+
+
+
+
+	const handleURL = () => {
+		if (isValidUrl(url)) {
+			fetch("https://urlscan.io/api/v1/scan/", {
+				method: "POST",
+				headers: {
+					"API-Key": apiKey,
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					url: url,
+					visibility: "public"
+				})
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data);
+					// call another api to get the result
+					setImg(`https://urlscan.io/screenshots/${data.uuid}.png`);
+					console.log(img);
+					toaster.push({
+						message: "Data sent successfully",
+						variant: "success",
+						dismissAfter: 5000
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+					toaster.push({
+						message: "Something went wrong",
+						variant: "error",
+						dismissAfter: 5000
+					});
+				});
+		} else {
+			toaster.push({
+				message: "Please enter a valid url",
+				variant: "error",
+				dismissAfter: 5000
+			});
+		}
+	};
 
 
 	const handleSubmit = () => {
@@ -37,7 +94,7 @@ export const IframeLoader: FC = () => {
 				iframe
 					.setAttribute("width", "100%");
 				iframe
-					.setAttribute("height", "100%");
+					.setAttribute("height", "1300px");
 				iframe
 					.setAttribute("id", "iframe");
 				const iframeContainer = document.getElementById("iframe_container");
@@ -57,7 +114,7 @@ export const IframeLoader: FC = () => {
 				iframe
 					.setAttribute("width", "100%");
 				iframe
-					.setAttribute("height", "100%");
+					.setAttribute("height", "1300px");
 				iframe
 					.setAttribute("id", "iframe");
 				const iframeContainer = document.getElementById("iframe_container");
@@ -79,15 +136,27 @@ export const IframeLoader: FC = () => {
 
 	return (
 		<>
-			<Box padding="space60" backgroundColor="colorBackgroundDecorative10Weakest" borderBottomStyle="solid" borderBottomWidth="borderWidth20">
+			<Box padding="space60" backgroundColor="colorBackgroundDecorative10Weakest" borderBottomStyle="solid" borderBottomWidth="borderWidth20" >
 				<Label htmlFor="url" required>Website URL to Preview</Label>
-				<Box display="flex" justifyContent="space-between" columnGap="space60" width="size60">
-					<Input aria-describedby="url" id="url" name="url" type="text" placeholder="https://ciptex.com" onChange={handleChange} required/>
-					<Button variant="primary" type="submit" onClick={handleSubmit}>View</Button>
+				<Box display="flex" justifyContent="start" alignItems="center" rowGap="space50" columnGap="space50" width="100%" flexWrap="wrap">
+					<Box display="flex" alignItems="center" columnGap="space50" width="size50">
+						<Input aria-describedby="url" id="url" name="url" type="text" placeholder="https://ciptex.com" onChange={handleChange} required/>
+					</Box>
+					<Box display="flex"  alignItems="center" columnGap="space50" width="size50">
+						<Button variant="secondary" onClick={handleSubmit}>Iframe</Button>
+                    or
+						{/* <Button variant="secondary" disabled onClick={handleURL}>Image</Button>
+                    or */}
+						<FilePicker accept="image/*" onChange={handleFileChange}>
+							<FilePickerButton variant="secondary">Upload a file</FilePickerButton>
+						</FilePicker>
+					</Box>
 				</Box>
 				<HelpText id="url">* Please make sure the website you are trying to view allows iframe loading. <Anchor href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options" target="_blank">Learn more here</Anchor>.</HelpText>
 			</Box>
-			<Box id="iframe_container" height="2000px"></Box>
+			<Box id="iframe_container" height="auto">
+				{img && <img id="imageid" src={img} alt="screenshot" width="100%" height="100%" />}
+			</Box>
 			<Toaster {...toaster} />
 		</>
 	)

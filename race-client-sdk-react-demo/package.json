@@ -4,8 +4,8 @@
     "private": true,
     "dependencies": {
         "@ciptex/race-client-sdk": "^1.11.1",
-        "@twilio-paste/core": "^15.0.0",
-        "@twilio-paste/icons": "^9.0.0",
+        "@twilio-paste/core": "^17.0.1",
+        "@twilio-paste/icons": "^9.4.0",
         "@twilio/flex-webchat-ui": "^2.9.1",
         "babel-runtime": "^6.26.0",
         "prop-types": "^15.7.2",
