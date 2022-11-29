@@ -9,7 +9,7 @@ export const IframeLoader: FC = () => {
 	const [url, setUrl] = useState<string>("");
 	const [apiKey] = useState<string>(APIKEY || "");
 	const [img, setImg] = useState<string>("");
-	const [file, setFile] = useState()
+
 
 	const handleChange = (e: any) => {
 		setUrl(e.target.value);
@@ -24,17 +24,10 @@ export const IframeLoader: FC = () => {
 		return true;
 	}
 
-	// convert file to img url using URL.createObjectURL
 	const handleFileChange = (e: any) => {
-		const file = e.target.files[0];
-		setFile(file);
-		const url = URL.createObjectURL(file);
+		const url = URL.createObjectURL(e.target.files[0]);
 		setImg(url);
 	}
-
-
-
-
 
 	const handleURL = () => {
 		if (isValidUrl(url)) {
@@ -52,7 +45,6 @@ export const IframeLoader: FC = () => {
 				.then((res) => res.json())
 				.then((data) => {
 					console.log(data);
-					// call another api to get the result
 					setImg(`https://urlscan.io/screenshots/${data.uuid}.png`);
 					console.log(img);
 					toaster.push({
@@ -132,6 +124,15 @@ export const IframeLoader: FC = () => {
 		}
 	}
 
+	const clearFunction = () => {
+		const iframeOld = document.getElementById("iframe");
+		setUrl("");
+		setImg("");
+		if (iframeOld) {
+			iframeOld.remove();
+		}
+	}
+
 
 
 	return (
@@ -145,11 +146,11 @@ export const IframeLoader: FC = () => {
 					<Box display="flex"  alignItems="center" columnGap="space50" width="size50">
 						<Button variant="secondary" onClick={handleSubmit}>Iframe</Button>
                     or
-						{/* <Button variant="secondary" disabled onClick={handleURL}>Image</Button>
-                    or */}
+						{/* <Button variant="secondary" disabled onClick={handleURL}>Image</Button> or */}
 						<FilePicker accept="image/*" onChange={handleFileChange}>
 							<FilePickerButton variant="secondary">Upload a file</FilePickerButton>
 						</FilePicker>
+						<Button variant="secondary" onClick={clearFunction}>Clear</Button>
 					</Box>
 				</Box>
 				<HelpText id="url">* Please make sure the website you are trying to view allows iframe loading. <Anchor href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options" target="_blank">Learn more here</Anchor>.</HelpText>
