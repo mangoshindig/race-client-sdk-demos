@@ -21,6 +21,7 @@ export const VoiceProvider: FC<ReactElementProps> = ({ children }: ReactElementP
 
 	const init = (): void => {
 		try {
+			console.log('CAZ',ACCOUNT_SID, IDENTITY, VOICE_APP_CLI, VOICE_APP_SID)
 			if(!ACCOUNT_SID || !IDENTITY || !VOICE_APP_SID) {
 				throw new Error ("Missing ACCOUNT_SID or IDENTITY or VOICE_APP_SID Variables");
 			}

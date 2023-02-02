@@ -19,6 +19,7 @@ export const FlexChatProviderReact: FC<ReactElementProps> = ({ children }: React
 	// This function is responsible for setting up the Twilio Flex Web Chat by using the config above.
 	useEffect(() => {
 		if (webChatConfig) {
+			console.log('CAZ', webChatConfig)
 			FlexWebChat.Manager.create(webChatConfig).then((manager) => setManagerSetup(manager));
 			console.log(managerSetup + " manager setup");
 		}
