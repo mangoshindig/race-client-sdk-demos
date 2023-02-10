@@ -1,4 +1,5 @@
 import { NavButton } from "./NavButton";
+import { useEffect } from "react";
 
 type ButtonProps = {
     setButtonContainer: (buttonContainer: boolean) => void;
@@ -8,16 +9,23 @@ type ButtonProps = {
 // eslint-disable-next-line react/prop-types
 export const NavButtonComp = ({ setButtonContainer, setContainerName }: ButtonProps) => {
 
+	//on load call setContainerName("chat"); setButtonContainer(false); TODO
+
+	useEffect(() => {
+		setContainerName("locator"); 
+		setButtonContainer(false);
+	}, []);
+
 	return (<>
-		<NavButton icon="call" title="Call" onClick={() => {
+		{/*<NavButton icon="call" title="Call" onClick={() => {
 			setContainerName("call");
 			setButtonContainer(false);
-		}} />
+		}} />*/}
 		<NavButton icon="chat" view="0 0 576 512" title="Chat" onClick={() => {
 			setContainerName("chat");
 			setButtonContainer(false);
 		}} />
-		<NavButton icon="enquire" title="Enquire" onClick={() => {
+		{/*<NavButton icon="enquire" title="Enquire" onClick={() => {
 			setContainerName("enquire");
 			setButtonContainer(false);
 		}} />
@@ -32,6 +40,6 @@ export const NavButtonComp = ({ setButtonContainer, setContainerName }: ButtonPr
 		<NavButton icon="messenger" title="Messenger" onClick={() => {
 			setContainerName("messenger");
 			setButtonContainer(false);
-		}} />
+		}} />*/}
 	</>);
 }

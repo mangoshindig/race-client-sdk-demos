@@ -17,9 +17,9 @@ export const ParentContainer = styled("div")`
   flex-direction: column;
   line-height: 25px;
   margin-right: 15px;
-  max-width: 350px;
+  max-width: 450px;
   position: fixed;
-  height: 520px;
+  height: 800px;
   width: 100vw;
   z-index: 10;
   ${mq[0]} {
@@ -59,7 +59,7 @@ export const ButtonsContainer = styled("div")`
   flex-direction: column;
   align-content: center;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-x: scroll;
   ${mq[0]} {
     padding: 1.5em;
@@ -71,7 +71,7 @@ export const ButtonsContainer = styled("div")`
 `;
 
 export const HeaderLogo = styled("img")`
-  max-width: 100px;
+  max-width: 250px;
   height: auto;
   ${mq[0]} {
     max-width: 125px;
@@ -236,14 +236,15 @@ export const WidgetButton = styled("a")`
 `;
 
 export const Image = styled("img")`
-  border-radius: 100px;
+  
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 25px;
   position: fixed;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
   cursor: pointer;
   z-index: 11;
 `;
@@ -392,6 +393,24 @@ export const CallContainer = styled("div")`
   border-radius: 30px 30px;
   width: 100%;
   height: 100%;
+  padding: 1em;
+  display: flex !important;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  row-gap: 10px;
+  overflow-y: scroll;
+  ${mq[0]} {
+    padding: 1.5em;
+  }
+`;
+
+export const BookingContainer = styled("div")`
+  background-color: #fff;
+  border-radius: 30px 30px;
+  width: 100%;
+  height: 85%;
   padding: 1em;
   display: flex !important;
   flex-direction: column;

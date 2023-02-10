@@ -1,6 +1,7 @@
 import { Context, createContext, FC, useEffect, useState } from "react";
 import { ACCOUNT_SID, FLEXCHAT_FLOW_SID, MOCKAPI } from "src/constants";
 import { ReactElementProps } from "../../interface";
+import Logo from "../../assets/logo.png"
 
 export type ConfigContextType = {
 	config: any;
@@ -15,15 +16,6 @@ export const ConfigProvider: FC<ReactElementProps> = ({ children }: ReactElement
 	const [config, setConfig] = useState<any>("");
 	const [webChatConfig, setWebChatConfig] = useState<any>("");
 
-	// This function is responsible for getting the initial config for the for the application such as Account SID, Flex Flow SID, etc.
-	useEffect(() => {
-		/*fetch(`${MOCKAPI}`)
-			.then((response) => response.json())
-			.then((data) => {*/
-				setConfig({whatsAppLink : 'https://wa.me/+447401259740', facebookLink : 'https://www.ciptex.com'});
-			//}
-			//)
-	}, []);
 
 	// This function is responsible for getting the webchat config for the Twilio Flex Web Chat.
 	useEffect(() => {
@@ -31,6 +23,9 @@ export const ConfigProvider: FC<ReactElementProps> = ({ children }: ReactElement
 			.then((response) => response.json())
 			.then((data) => {
 				setWebChatConfig(data);
+				(async () => {
+					setConfig({...config, logoUrl : Logo})
+				})();
 			}
 			)
 	}, []);

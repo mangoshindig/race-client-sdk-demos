@@ -3,6 +3,9 @@ import { ButtonsContainer, Description, HeaderButtonsContainer, HeaderContainer,
 import { ViewRender } from "./RenderFunction";
 import WidgetLtrGif from "../../assets/animated-widget-ltr.gif";
 import WidgetUpGif from "../../assets/animated-widget.gif";
+import Icon from "../../assets/icon-chat.png";
+import { ChatIcon } from "@twilio-paste/icons/esm/ChatIcon";
+
 import { HeaderButtonComp } from "./HeaderButtonContainer";
 import { NavButtonComp } from "./NavButtonContainer";
 import { useConfigContext } from "src/hooks/useConfigContext";
@@ -31,7 +34,8 @@ export const RaceConnect: FC = () => {
 					setButtonContainer(true);
 					setParentContainer(true);
 				}}>
-					<Image src={WidgetDirection ? WidgetLtrGif : WidgetUpGif} />
+					<Image src={Icon} />
+					
 				</WidgetButton>
 			) : null}
 			{parentContainer ? (
@@ -39,9 +43,9 @@ export const RaceConnect: FC = () => {
 					<HeaderContainer>
 						<HeaderLogo src={config?.logoUrl} />
 						<HeaderButtonsContainer>
-							{!buttonContainer && (
+							{/*!buttonContainer && (
 								<HeaderButtonComp icon="back" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
-							)}
+							)*/}
 							<HeaderButtonComp icon="close" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
 						</HeaderButtonsContainer>
 					</HeaderContainer>
