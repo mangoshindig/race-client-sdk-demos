@@ -1,20 +1,21 @@
 import {  FC, useEffect, useState } from "react";
 import { ButtonsContainer, Description, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "../../assets/index.styles";
 import { ViewRender } from "./RenderFunction";
-import WidgetLtrGif from "../../assets/animated-widget-ltr.gif";
-import WidgetUpGif from "../../assets/animated-widget.gif";
 import Icon from "../../assets/icon-chat.png";
-import { ChatIcon } from "@twilio-paste/icons/esm/ChatIcon";
 
 import { HeaderButtonComp } from "./HeaderButtonContainer";
 import { NavButtonComp } from "./NavButtonContainer";
 import { useConfigContext } from "src/hooks/useConfigContext";
 
-export const RaceConnect: FC = () => {
+interface IProps
+{
+	conf : any
+}
 
-	const WidgetDirection = "ltr";
-	// This will change the direction of the widget from Left to Right to Bottom to Top
-	// const WidgetDirection = "";
+
+export const RaceConnect: FC<IProps> = ({
+	conf 
+} ) => {
 
 	const [showWidget, setShowWidget] = useState(true);
 	const [buttonContainer, setButtonContainer] = useState(false);
@@ -22,8 +23,10 @@ export const RaceConnect: FC = () => {
 	const [containerName, setContainerName] = useState("");
 	const { config } = useConfigContext();
 
+
 	useEffect(() => {
-		ViewRender(containerName);
+		ViewRender(containerName, conf);
+		console.log('CAZ2', conf)
 	}, [containerName]);
 
 	return (
@@ -49,7 +52,7 @@ export const RaceConnect: FC = () => {
 							<HeaderButtonComp icon="close" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
 						</HeaderButtonsContainer>
 					</HeaderContainer>
-					{ViewRender(containerName)}
+					{ViewRender(containerName, conf)}
 					{buttonContainer && (
 						<ButtonsContainer>
 							<Description>

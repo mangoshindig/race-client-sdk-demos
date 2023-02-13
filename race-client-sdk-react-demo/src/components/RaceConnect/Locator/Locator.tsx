@@ -20,7 +20,11 @@ import { InlineWidget } from "react-calendly";
 import FadeIn from "react-fade-in";
 import { EditIcon } from "@twilio-paste/icons/esm/EditIcon";
 
-export const Locator: FC = () => {
+interface IProps {
+	conf: any
+}
+
+export const Locator: FC<IProps> = ({ conf }) => {
 	const [locatorDetails, setLocatorDetails] = useState<any>("");
 	const [step, setStep] = useState(0);
 	const [stepZeroSelection, setStepZeroSelection] = useState("");
@@ -37,13 +41,20 @@ export const Locator: FC = () => {
 		const d = new Date();
 		let mins = d.getMinutes().toString()
 
-		if(mins.length == 1)
-		{
-			mins = '0'+mins
+		if (mins.length == 1) {
+			mins = '0' + mins
 		}
 
 		setStartTime(d.getHours() + ":" + d.getMinutes())
 	}, []);
+
+	useEffect(() => {
+		console.log('CAZ', conf)
+		if(!conf.showQ1)
+		{
+			setStep(2);
+		}
+	}, [conf]);
 
 
 	const onChange = ({
@@ -52,8 +63,6 @@ export const Locator: FC = () => {
 		console.log("onChange");
 		console.log(target);
 		console.log(target.id, target.value);
-
-
 
 		let l = { ...locatorDetails };
 		l[target.id] = target.value;
@@ -127,13 +136,6 @@ export const Locator: FC = () => {
 		}
 
 		setStep(s);
-
-
-		setTimeout(function () {
-			console.log('current step', step)
-		}, 300)
-
-
 		//jumpToEnd()
 	};
 
@@ -146,8 +148,6 @@ export const Locator: FC = () => {
 		setZipError("")
 		setEmailError("")
 		setPhoneError("")
-
-
 
 		//validation
 		console.log('validating', locatorDetails)
@@ -205,8 +205,6 @@ export const Locator: FC = () => {
 	const showBooking = () => {
 		console.log('showBooking', bookingWidgetDivRef)
 		setStep(8);
-
-
 		setTimeout(function () {
 			if (bookingWidgetDivRef.current) {
 				console.log(bookingWidgetDivRef.current)
@@ -214,9 +212,6 @@ export const Locator: FC = () => {
 
 			}
 		}, 1000)
-
-
-
 	};
 
 	return (
@@ -238,7 +233,7 @@ export const Locator: FC = () => {
 							</ChatMessageMeta>
 						</ChatMessage>
 
-						{step == 0 && (
+						{step == 0 && conf.showQ1 && (
 							<FadeIn>
 								<Box
 									display="flex"
@@ -252,7 +247,7 @@ export const Locator: FC = () => {
 										onClick={(e) => stepZeroOnChange("Credit Card Help")}
 									>
 										Credit Card Help
-                  </Button>
+									</Button>
 								</Box>
 								<Box
 									display="flex"
@@ -266,7 +261,7 @@ export const Locator: FC = () => {
 										onClick={(e) => stepZeroOnChange("Student Loan Debt")}
 									>
 										Student Loan Debt
-                  </Button>
+									</Button>
 								</Box>
 								<Box
 									display="flex"
@@ -280,13 +275,13 @@ export const Locator: FC = () => {
 										onClick={(e) => stepZeroOnChange("More Options")}
 									>
 										More Options
-                  </Button>
+									</Button>
 								</Box>
 							</FadeIn>
 						)}
 					</>
 				)}
-				{step >= 1 && (
+				{step >= 1 && conf.showQ1 && (
 					<Box display="flex" justifyContent="flex-end">
 						<Stack orientation="horizontal" spacing="space10">
 							<Box marginBottom="space60">
@@ -303,14 +298,14 @@ export const Locator: FC = () => {
 
 				{step == 2 && (
 					<><FadeIn>
-						<ChatMessage variant="inbound">
+						{conf.showQ1 && <ChatMessage variant="inbound">
 							<ChatBubble>
 								Please choose from other counseling options below:
-              </ChatBubble>
+							</ChatBubble>
 							<ChatMessageMeta aria-label="said by Penny">
 								<ChatMessageMetaItem>Penny</ChatMessageMetaItem>
 							</ChatMessageMeta>
-						</ChatMessage>
+						</ChatMessage>}
 
 						{step == 2 && (
 							<Box
@@ -323,7 +318,18 @@ export const Locator: FC = () => {
 
 									<Option value="default">
 										-- Select a service --
-                </Option>
+									</Option>
+
+									{conf
+										? conf &&
+										conf.otherServices.map((service: any, index: number) => (
+											<Option key={index} value={service.value}>
+												{service.key}</Option>
+										))
+										: null!}
+
+
+									{/*
 									<Option value="First Time Homebuyer">
 										First Time Home Buyer
                 </Option>
@@ -337,7 +343,7 @@ export const Locator: FC = () => {
 									<Option value="Bankruptcy">Bankruptcy Guidance</Option>
 									<Option value="Overall Budget and Financial Review">
 										Overall Financial Review
-                </Option>
+									</Option>*/}
 								</Select></Box>
 						)}
 					</FadeIn></>
@@ -472,7 +478,7 @@ export const Locator: FC = () => {
 											onChange={(e) => onChange(e)}
 											required
 											value={locatorDetails.zipCode}
-											hasError = {zipError.length > 0}
+											hasError={zipError.length > 0}
 										/></Box>
 									{zipError.length > 0 && <HelpText id="zip_help_text" variant="error">{zipError}</HelpText>}
 									<Box
@@ -490,7 +496,7 @@ export const Locator: FC = () => {
 											onChange={(e) => onChange(e)}
 											required
 											value={locatorDetails.phoneNumber}
-											hasError = {phoneError.length > 0}
+											hasError={phoneError.length > 0}
 										/>
 
 									</Box>{phoneError.length > 0 && <HelpText id="phone_help_text" variant="error">{phoneError}</HelpText>}
@@ -509,7 +515,7 @@ export const Locator: FC = () => {
 											onChange={(e) => onChange(e)}
 											required
 											value={locatorDetails.emailAddress}
-											hasError = {emailError.length > 0}
+											hasError={emailError.length > 0}
 										/></Box>
 									{emailError.length > 0 && <HelpText id="email_help_text" variant="error">{emailError}</HelpText>}
 									<Box
@@ -635,23 +641,23 @@ export const Locator: FC = () => {
 									<ChatMessageMetaItem>You</ChatMessageMetaItem>
 								</ChatMessageMeta>
 							</ChatMessage></Stack></Box>
-							<FadeIn>
-							<Box
-								display="flex"
-								paddingTop="space50"
-								padding="space30"
-							></Box>
-							<ChatMessage variant="inbound">
-								<ChatBubble>
+					<FadeIn>
+						<Box
+							display="flex"
+							paddingTop="space50"
+							padding="space30"
+						></Box>
+						<ChatMessage variant="inbound">
+							<ChatBubble>
 								No problem! A member of their team will be reaching out to you. You will also receive an email with other ways to get in touch.
 					</ChatBubble>
-								<ChatMessageMeta aria-label="said by Penny">
-									<ChatMessageMetaItem>Penny</ChatMessageMetaItem>
-								</ChatMessageMeta>
-							</ChatMessage>
-		
-							
-						</FadeIn></>
+							<ChatMessageMeta aria-label="said by Penny">
+								<ChatMessageMetaItem>Penny</ChatMessageMetaItem>
+							</ChatMessageMeta>
+						</ChatMessage>
+
+
+					</FadeIn></>
 				)}
 				{step >= 8 && (
 					<>
@@ -668,18 +674,18 @@ export const Locator: FC = () => {
 									hideEventTypeDetails: true,
 									hideLandingPageDetails: false,
 									primaryColor: '00a2ff',
-									textColor: '4d5055'
+									textColor: '4d5055',
+									hideGdprBanner:true
 								}} prefill={{
 									email: locatorDetails.emailAddress,
 									firstName: locatorDetails.firstName,
 									lastName: locatorDetails.lastName,
-									name: locatorDetails.firstName+' '+locatorDetails.lastName +' ('+locatorDetails.serviceName+')', customAnswers: {
-										
+									name: locatorDetails.firstName + ' ' + locatorDetails.lastName + ' (' + locatorDetails.serviceName + ')', customAnswers: {
+
 										a2: locatorDetails.serviceName,
 										a3: locatorDetails.phoneNumber
 									}
 								}} /></FadeIn></div>
-						{/** pass in the name and email somehow, and include referral details in body? */}
 					</>
 				)}
 				<div ref={endRef}></div>

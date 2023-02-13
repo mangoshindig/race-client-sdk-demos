@@ -6,20 +6,17 @@
 import Booking from "./Booking/Booking"
 import Locator from "./Locator/Locator"
 
-export const ViewRender = (containerName: string) => {
+export const ViewRender = (containerName: string, conf: any) => {
 
-
+	console.log('CAZ3', conf)
 
 	switch (containerName) {
 
 	case "locator":
 		return (
-			<Locator />
+			<Locator conf = {conf} />
 		)
-	case "booking":
-		return (
-			<Booking />
-		)
+
 	default:
 		return (
 			null
