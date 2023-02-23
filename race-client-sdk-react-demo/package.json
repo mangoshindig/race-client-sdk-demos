@@ -1,5 +1,6 @@
 {
     "name": "race-client-sdk-react-demo",
+    "homepage" : "https://caz.fyi/wp-content/reactpress/apps/race-client-sdk-react-demo/build",
     "version": "1.0.0",
     "private": true,
     "dependencies": {

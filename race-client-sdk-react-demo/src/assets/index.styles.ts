@@ -19,7 +19,7 @@ export const ParentContainer = styled("div")`
   margin-right: 15px;
   max-width: 450px;
   position: fixed;
-  height: 800px;
+  height: 80vh;
   width: 100vw;
   z-index: 10;
   ${mq[0]} {

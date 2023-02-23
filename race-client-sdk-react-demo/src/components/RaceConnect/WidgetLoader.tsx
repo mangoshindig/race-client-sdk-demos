@@ -2,6 +2,7 @@ import {  FC, useEffect, useState } from "react";
 import { ButtonsContainer, Description, HeaderButtonsContainer, HeaderContainer, HeaderLogo, Image, ParentContainer, WidgetButton } from "../../assets/index.styles";
 import { ViewRender } from "./RenderFunction";
 import Icon from "../../assets/icon-chat.png";
+import Logo from "../../assets/logo.png";
 
 import { HeaderButtonComp } from "./HeaderButtonContainer";
 import { NavButtonComp } from "./NavButtonContainer";
@@ -25,9 +26,22 @@ export const RaceConnect: FC<IProps> = ({
 
 
 	useEffect(() => {
-		ViewRender(containerName, conf);
-		console.log('CAZ2', conf)
-	}, [containerName]);
+		if(showWidget)
+		{
+			setShowWidget(true);
+			setButtonContainer(false);
+			setParentContainer(false);
+			setContainerName("");
+		}
+		else
+		{
+			setShowWidget(false);
+			setButtonContainer(false);
+			setParentContainer(true);
+			setContainerName("locator");
+		}
+		ViewRender(containerName, conf, setShowWidget);
+	}, [containerName,showWidget]);
 
 	return (
 		<>
@@ -44,7 +58,7 @@ export const RaceConnect: FC<IProps> = ({
 			{parentContainer ? (
 				<ParentContainer>
 					<HeaderContainer>
-						<HeaderLogo src={config?.logoUrl} />
+						<HeaderLogo src={Logo} />
 						<HeaderButtonsContainer>
 							{/*!buttonContainer && (
 								<HeaderButtonComp icon="back" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
@@ -52,7 +66,7 @@ export const RaceConnect: FC<IProps> = ({
 							<HeaderButtonComp icon="close" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
 						</HeaderButtonsContainer>
 					</HeaderContainer>
-					{ViewRender(containerName, conf)}
+					{ViewRender(containerName, conf, setShowWidget)}
 					{buttonContainer && (
 						<ButtonsContainer>
 							<Description>

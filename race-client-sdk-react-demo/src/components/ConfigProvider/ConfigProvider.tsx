@@ -19,15 +19,9 @@ export const ConfigProvider: FC<ReactElementProps> = ({ children }: ReactElement
 
 	// This function is responsible for getting the webchat config for the Twilio Flex Web Chat.
 	useEffect(() => {
-		fetch(`https://api.ciptex.com/race/${ACCOUNT_SID}/webchat/${FLEXCHAT_FLOW_SID}/config`)
-			.then((response) => response.json())
-			.then((data) => {
-				setWebChatConfig(data);
-				(async () => {
-					setConfig({...config, logoUrl : Logo})
-				})();
-			}
-			)
+		
+					setConfig({logoUrl : Logo})
+				
 	}, []);
 
 
