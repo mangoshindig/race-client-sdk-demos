@@ -3,6 +3,7 @@ import { ButtonsContainer, Description, HeaderButtonsContainer, HeaderContainer,
 import { ViewRender } from "./RenderFunction";
 import Icon from "../../assets/icon-chat.png";
 import Logo from "../../assets/logo.png";
+import LogoSpanish from "../../assets/logo-spanish.png";
 
 import { HeaderButtonComp } from "./HeaderButtonContainer";
 import { NavButtonComp } from "./NavButtonContainer";
@@ -58,7 +59,7 @@ export const RaceConnect: FC<IProps> = ({
 			{parentContainer ? (
 				<ParentContainer>
 					<HeaderContainer>
-						<HeaderLogo src={Logo} />
+						<HeaderLogo src={conf.language === 'Spanish' && LogoSpanish || Logo} />
 						<HeaderButtonsContainer>
 							{/*!buttonContainer && (
 								<HeaderButtonComp icon="back" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />

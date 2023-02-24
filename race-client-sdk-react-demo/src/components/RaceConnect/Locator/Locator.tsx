@@ -784,7 +784,7 @@ export const Locator: FC<IProps> = ({ conf, setShowWidget }) => {
 					></Box>
 					<ChatMessage variant="inbound">
 						<ChatBubble>
-							{conf.language === "Spanish" && "Has estado conectado " || "You've been connected to "}<b>{locatorResults.agencyName}</b>
+							{conf.language === "Spanish" && "Has estado conectado a " || "You've been connected to "}<b>{locatorResults.agencyName}</b>
 							{conf.language === "Spanish" && ". Esta agencia le ofrece la opción de reservar una cita en línea, ¿le gustaría seguir adelante y reservar una sesión de asesoramiento?" || ". This agency has online booking, would you like to go ahead and book a counseling session?"}
 
 
@@ -827,7 +827,7 @@ export const Locator: FC<IProps> = ({ conf, setShowWidget }) => {
 						<ChatBubble>
 
 
-							{conf.language === "Spanish" && "Has estado conectado " || "You've been connected to "}<b>{locatorResults.agencyName}</b>
+							{conf.language === "Spanish" && "Has estado conectado a " || "You've been connected to "}<b>{locatorResults.agencyName}</b>
 							{conf.language === "Spanish" && ". Un miembro de su personal se pondrá en contacto. También recibirás un correo electrónico con otras formas de ponerse en contacto." || ". A member of their team will be reaching out to you. You will also receive an email with other ways to get in touch."}
 
 						</ChatBubble>
