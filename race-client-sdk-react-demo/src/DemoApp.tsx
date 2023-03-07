@@ -20,8 +20,8 @@ export const DemoApp: FC = () => {
 			{value : "Overall Financial Review", spanishValue : "Análisis de Presupuesto",  key : "Overall Budget and Financial Review"}
 
 		],
-		useProd : false,
-		language : "Spanish"}} />
+		useProd : true,
+		language : "English"}} />
 		</Box>
 	)
 }

@@ -298,7 +298,7 @@ export const Locator: FC<IProps> = ({ conf, setShowWidget }) => {
 				"useProd": conf.useProd
 			});
 
-			let url = 'https://chat-widget-5710.twil.io/proxy-request'
+			let url = 'https://chat-widget-5710.twil.io/proxy-request-nfcc-org'
 
 
 			let config = {
