@@ -1,6 +1,6 @@
 {
-    "name": "nfcc-chatbot_english-allservices-showq1-nfcc.org-prod",
-    "homepage" : "https://nfcc.org/wp-content/reactpress/apps/nfcc-chatbot_english-allservices-showq1-nfcc.org-prod/build",
+    "name": "nfcc-chatbot_english-main-nfcc.org-prod",
+    "homepage" : "https://nfcc.org/wp-content/reactpress/apps/nfcc-chatbot_english-main-nfcc.org-prod/build",
     "version": "1.0.0",
     "private": true,
     "dependencies": {

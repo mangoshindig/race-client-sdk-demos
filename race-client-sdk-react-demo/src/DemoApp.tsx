@@ -12,12 +12,14 @@ export const DemoApp: FC = () => {
 		<Box>
 			<RaceConnect conf = {{showQ1 : true,
 		otherServices : [
-			{value : "First Time Home Buyer", spanishValue : "Primeros Compradores De Vivienda", key : "First Time Homebuyer"},
+			{value : "Student Loan Debt", spanishValue : "Préstamos de Estudiantes",  key : "Student Loan Help"},
 			{value : "Small Business Owner", spanishValue : "Dueños de pequeños negocios",  key : "Small Business Owner"},
 			{value : "Foreclosure Prevention", spanishValue : "Morosidad Hipotecaria",  key : "Foreclosure Prevention"},
 			{value : "Reverse Mortgage Help", spanishValue : "Hipoteca Invertida",  key : "Reverse Mortgage"},
 			{value : "Bankruptcy Guidance", spanishValue : "Quiebra",  key : "Bankruptcy"},
-			{value : "Overall Financial Review", spanishValue : "Análisis de Presupuesto",  key : "Overall Budget and Financial Review"}
+			{value : "Rental Counseling", spanishValue : "Ayuda de Alquiler",  key : "Rental Counseling"},
+			{value : "First Time Homebuyer", spanishValue : "Primeros Compradores De Vivienda",  key : "First Time Homebuyer"}
+
 
 		],
 		useProd : true,
