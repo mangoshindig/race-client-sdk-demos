@@ -22,7 +22,7 @@ export const DemoApp: FC = () => {
 
 
 		],
-		useProd : true,
+		useProd : false,
 		language : "English"}} />
 		</Box>
 	)
