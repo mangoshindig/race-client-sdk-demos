@@ -6,6 +6,7 @@ import {
 import * as FlexWebChat from "@twilio/flex-webchat-ui";
 import useState from 'react-usestateref'
 import { Box, Button, Text } from "@twilio-paste/core";
+import styled from "@emotion/styled";
 
 const bubble = {
 	paddingLeft: '12px',
@@ -25,15 +26,25 @@ const bubble = {
 	//textAlign: 'center'
 	borderStyle: 'solid',
 	borderWidth: '1px',
-	cursor: 'pointer !important',
+	cursor: 'pointer !important'
 }
 
-const wrapper = {
-	display: 'contents',
-	maxWidth: '300px'
-}
+// const wrapper = {
+// 	display: 'flex',
+// 	maxWidth: '300px',
+// 	position: 'absolute',
+// }
 
-
+const Wrapper = styled('div')`
+	display: flex;
+	max-width: 300px;
+	position: absolute;
+	bottom: 0px;
+	right: 0;
+	flex-direction: column;
+	z-index: 100;
+	background-color: white;
+`;
 
 export type FlexWebChatContainerProps = {
 	manager: FlexWebChat.Manager;
@@ -72,11 +83,17 @@ export const ChatManagerTwilio = ({ manager, setShowWidget }: FlexWebChatContain
 	useEffect(() => {
 		const container = document.querySelector<HTMLButtonElement>(".Twilio.Twilio-MainContainer");
 		if (container) {
-			container.style.boxShadow = "none";
+			// if (clickable.length > 0) {
+			// 	container.style.height = "200px";
+			// 	container.style.width = "100%";
+			// 	container.style.boxShadow = "none";
+			// } else {
+			container.style.height = "450px";
 			container.style.width = "100%";
-			container.style.height = "250px";
+			container.style.boxShadow = "none";
 		}
-	}, [manager]);
+		// }
+	}, [clickable]);
 
 	useEffect(() => {
 
@@ -191,19 +208,21 @@ export const ChatManagerTwilio = ({ manager, setShowWidget }: FlexWebChatContain
 		<FlexWebChatContainer>
 			<FlexWebChat.ContextProvider manager={manager}>
 				<Box display="flex" flexDirection="column" justifyContent="flex-end" alignItems="flex-end">
-					<Box alignSelf="flex-start">
-						<Button variant="secondary" size="icon" onClick={kill}>
-							Clear and end chat
-						</Button>
-					</Box>
-					<Box paddingTop="space60">
-						<Text as="p" fontSize="fontSize30" lineHeight="lineHeight20">
-							You can also press escape on your keyboard to clear and close the chat in an emergency
-						</Text>
+					<Box display="flex" flexDirection="row" paddingBottom="space40" justifyContent="space-between" alignItems="center">
+						<Box paddingRight="space20">
+							<Button variant="secondary" size="icon" onClick={kill}>
+								Clear and end chat
+							</Button>
+						</Box>
+						<Box width="fit-content">
+							<Text as="p" fontSize="fontSize30" textAlign="right" lineHeight="lineHeight20">
+								You can also press escape on your keyboard to clear and close the chat in an emergency
+							</Text>
+						</Box>
 					</Box>
 
 					<FlexWebChat.MainContainer />
-					<div key="clickyButtons" style={wrapper} >
+					<Wrapper key="clickyButtons">
 						{clickable && show && clickable.map((m: any, index: number) => (
 							<div
 								style={bubble}
@@ -213,7 +232,8 @@ export const ChatManagerTwilio = ({ manager, setShowWidget }: FlexWebChatContain
 								{m.message}
 							</div>
 						))}
-					</div></Box>
+					</Wrapper>
+				</Box>
 			</FlexWebChat.ContextProvider>
 		</FlexWebChatContainer>
 	);
