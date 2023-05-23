@@ -53,7 +53,7 @@ export const ButtonsContainer = styled("div")`
   background-color: #fff;
   border-radius: 30px 30px;
   width: 100%;
-  height: 100%;
+  height: 85%;
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -111,12 +111,12 @@ export const HeaderButton = styled("a")`
 
 export const Description = styled("p")`
   color: #091e42;
-  font-size: 0.9em;
+  font-size: 1.4em;
   font-family: Barlow;
   line-height: normal;
   text-align: start;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   ${mq[0]} {
     font-size: 18px;
     font-family: Barlow;
