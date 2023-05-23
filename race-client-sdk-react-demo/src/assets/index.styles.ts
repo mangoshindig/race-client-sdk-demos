@@ -22,6 +22,7 @@ export const ParentContainer = styled("div")`
   height: 660px;
   width: 100vw;
   z-index: 10;
+  overflow: scroll;
   ${mq[0]} {
     max-width: 100%;
     height: 100%;
@@ -501,6 +502,10 @@ height: 100%;
 
 export const FlexWebChatContainer = styled("div")`
   position: relative;
+  font-family: Barlow;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
 
   .Twilio.Twilio-MainContainer {
     position: relative !important;
@@ -513,7 +518,7 @@ export const FlexWebChatContainer = styled("div")`
     display: none;
   }
   .Twilio.Twilio-EntryPoint-Tagline {
-    paddingTop: 0 !important;
+    paddingTop: 20px !important;
   }
 `;
 
