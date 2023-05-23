@@ -25,7 +25,7 @@
         "block-scoped-var": 2,
         "default-case": 2,
         "default-case-last": 2,
-        "default-param-last": 2,
+        "default-param-last": 0,
         "no-var": 2,
         "no-new-func": 2,
         "no-plusplus": 2,

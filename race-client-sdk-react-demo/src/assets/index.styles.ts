@@ -5,7 +5,7 @@ const breakpoints = [576, 768, 992, 1200, 1400];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 export const ParentContainer = styled("div")`
-  background-color: #f4f5f7;
+  background-color: #333333;
   border-radius: 30px 30px;
   bottom: 20px;
   right: 5px;
@@ -17,9 +17,9 @@ export const ParentContainer = styled("div")`
   flex-direction: column;
   line-height: 25px;
   margin-right: 15px;
-  max-width: 350px;
+  max-width: 400px;
   position: fixed;
-  height: 520px;
+  height: 660px;
   width: 100vw;
   z-index: 10;
   ${mq[0]} {
@@ -60,7 +60,7 @@ export const ButtonsContainer = styled("div")`
   align-content: center;
   flex-wrap: nowrap;
   justify-content: space-between;
-  overflow-x: scroll;
+  
   ${mq[0]} {
     padding: 1.5em;
     align-items: end;
@@ -112,12 +112,14 @@ export const HeaderButton = styled("a")`
 export const Description = styled("p")`
   color: #091e42;
   font-size: 0.9em;
+  font-family: Barlow;
   line-height: normal;
   text-align: start;
   margin-top: 5px;
   margin-bottom: 5px;
   ${mq[0]} {
     font-size: 18px;
+    font-family: Barlow;
   }
 `;
 
@@ -128,6 +130,7 @@ export const Buttons = styled("button")`
   border-radius: 15px;
   box-sizing: border-box;
   color: #091e42;
+  font-family: Barlow;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.25rem;
@@ -164,6 +167,7 @@ export const Buttons = styled("button")`
   ${mq[0]} {
     padding: 1.75rem 1rem;
     font-size: 20px;
+    font-family: Barlow;
   }
 `;
 
@@ -174,8 +178,9 @@ export const ButtonsLink = styled("a")`
   border-radius: 15px;
   box-sizing: border-box;
   color: #091e42;
+  font-family: Barlow;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 1.25rem;
   padding: 0.75rem 1rem;
   text-align: center;
@@ -209,6 +214,7 @@ export const ButtonsLink = styled("a")`
   ${mq[0]} {
     padding: 1.75rem 1rem;
     font-size: 20px;
+    font-family: Barlow;
   }
 `;
 
@@ -258,7 +264,7 @@ export const FormContainer = styled("form")`
   border: none;
   outline: none;
   transition: background-color 100ms ease-in 0s, box-shadow 100ms ease-in 0s, color 100ms ease-in 0s;
-  font-family: inherit;
+  font-family: Barlow;
   font-weight: 600;
   text-decoration: none;
   position: relative;
@@ -312,6 +318,7 @@ export const Input = styled("input")`
   color: #000;
   cursor: text;
   display: inline-block;
+  font-family: Barlow;
   font-size: 1em;
   font-weight: 400;
   height: 40px;
@@ -331,6 +338,7 @@ export const Label = styled("label")`
   color: #091e42;
   cursor: text;
   display: inline-block;
+  font-family: Barlow;
   font-size: 0.9em;
   line-height: 25px;
   width: 100%;
@@ -339,6 +347,7 @@ export const Label = styled("label")`
   ${mq[0]} {
     font-size: 18px;
     margin-bottom: 0.3em;
+    font-family: Barlow;
   }
 `;
 
@@ -361,6 +370,7 @@ export const Textarea = styled("textarea")`
   color: #000;
   cursor: text;
   display: inline-block;
+  font-family: Barlow;
   font-size: 1em;
   font-weight: 400;
   line-height: 25px;
@@ -457,6 +467,7 @@ export const HangUpButton = styled("button")`
 background: #e62143;
 cursor: pointer;
 display: flex;
+font-family: Barlow;
 font-size: 1.15em;
 font-weight: 700;
 justify-content: center;

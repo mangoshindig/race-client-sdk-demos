@@ -20,8 +20,23 @@ export const RaceConnect: FC = () => {
 	const { config } = useConfigContext();
 
 	useEffect(() => {
-		ViewRender(containerName);
+		
+		ViewRender(containerName, setShowWidget);
 	}, [containerName]);
+
+
+	useEffect(() => {
+		console.log('showWidget',showWidget)
+		if(showWidget)
+		{
+			setShowWidget(true);
+			setButtonContainer(false);
+			setParentContainer(false);
+			setContainerName("");
+			console.log('hiding')
+		}
+	}, [ showWidget]);
+
 
 	return (
 		<>
@@ -45,7 +60,7 @@ export const RaceConnect: FC = () => {
 							<HeaderButtonComp icon="close" setShowWidget={setShowWidget} setButtonContainer={setButtonContainer} setParentContainer={setParentContainer} setContainerName={setContainerName} />
 						</HeaderButtonsContainer>
 					</HeaderContainer>
-					{ViewRender(containerName)}
+					{ViewRender(containerName,setShowWidget)}
 					{buttonContainer && (
 						<ButtonsContainer>
 							<Description>

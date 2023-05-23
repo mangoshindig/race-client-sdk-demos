@@ -5,7 +5,7 @@ import Messenger from "./Messenger/Messenger"
 import Video from "./Video/Video"
 import WhatsApp from "./WhatsApp/WhatsApp"
 
-export const ViewRender = (containerName: string) => {
+export const ViewRender = (containerName: string, setShowWidget: (showWidget: boolean) => void) => {
 
 	switch (containerName) {
 	case "call":
@@ -30,7 +30,7 @@ export const ViewRender = (containerName: string) => {
 		)
 	case "chat":
 		return (
-			<Chat />
+			<Chat setShowWidget = {setShowWidget}/>
 		)
 	default:
 		return (

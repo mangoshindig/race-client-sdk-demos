@@ -31,9 +31,12 @@ export const ConfigProvider: FC<ReactElementProps> = ({ children }: ReactElement
 			.then((response) => response.json())
 			.then((data) => {
 				setWebChatConfig(data);
+				setConfig({...config, logoUrl: 'https://images.ctfassets.net/6sxvmndnpn0s/7G0PUuLY0xcDlDeE2VYqyr/9c1f7a5ba3005ebe9a2c54d4a0dc4aa7/Shelter-default-meta-image.png'})
 			}
 			)
 	}, []);
+
+	
 
 
 	const setLogoUrl = async (logoUrl: string) => {

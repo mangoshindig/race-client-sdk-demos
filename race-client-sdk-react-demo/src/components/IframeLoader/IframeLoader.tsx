@@ -1,9 +1,10 @@
 import { Anchor, Box, Button, FilePicker, FilePickerButton, HelpText, Input, Label, Toaster, useToaster, Select, Option } from "@twilio-paste/core";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { APIKEY } from "src/constants";
 import { useConfigContext } from "src/hooks/useConfigContext";
 import { HideIcon } from "@twilio-paste/icons/esm/HideIcon";
 import { ShowIcon } from "@twilio-paste/icons/esm/ShowIcon";
+import webImg from "../../assets/shelter-web.png";
 
 
 export const IframeLoader: FC = () => {
@@ -13,8 +14,10 @@ export const IframeLoader: FC = () => {
 	const [visible, setVisible] = useState<boolean>(true);
 	const [logoUrl, setLogoUrlState] = useState<string>("");
 	const [apiKey] = useState<string>(APIKEY || "");
-	const [img, setImg] = useState<string>("");
+	const [img, setImg] = useState<string>(webImg);
 	const { setLogoUrl } = useConfigContext();
+
+
 
 	const handleChange = (e: any) => {
 		setUrl(e.target.value);
@@ -168,8 +171,8 @@ export const IframeLoader: FC = () => {
 	}
 
 
-	return (
-		<>{!visible && <Box display="flex" justifyContent="end" backgroundColor="colorBackgroundDecorative10Weakest" alignItems="center" padding="space20" rowGap="space50" borderBottomStyle="solid" borderBottomWidth="borderWidth20" columnGap="space50" width="100%" flexWrap="wrap" visibility={visible ? "hidden" : "visible"}>
+	return (<>
+		{/*{!visible && <Box display="flex" justifyContent="end" backgroundColor="colorBackgroundDecorative10Weakest" alignItems="center" padding="space20" rowGap="space50" borderBottomStyle="solid" borderBottomWidth="borderWidth20" columnGap="space50" width="100%" flexWrap="wrap" visibility={visible ? "hidden" : "visible"}>
 <img src="https://ciptex.com/wp-content/uploads/2022/05/ciptex-logo.3e8e009e.svg" height = "30px"/>
 		<Button variant="secondary" size="icon" onClick={setVisibility} hidden = {!visible} >
 			Show Demo Config <ShowIcon decorative={false} title="Description of icon" />
@@ -192,7 +195,7 @@ export const IframeLoader: FC = () => {
 					<Box display="flex" alignItems="center" columnGap="space50" width="size50">
 						<Button variant="secondary" onClick={handleSubmit}>Iframe</Button>
                     or
-						{/* <Button variant="secondary" disabled onClick={handleURL}>Image</Button> or */}
+						
 						<FilePicker accept="image/*" onChange={handleFileChange}>
 							<FilePickerButton variant="secondary">Upload a file</FilePickerButton>
 						</FilePicker>
@@ -210,20 +213,8 @@ export const IframeLoader: FC = () => {
 					<Box display="flex" alignItems="center" columnGap="space50" width="size40">
 						<Button variant="secondary" onClick={handleLogoSubmit}>Set Widget Logo</Button>
 					</Box></Box>
-				{/*<Box display="flex" justifyContent="start" alignItems="center" rowGap="space50" columnGap="space50" width="100%" flexWrap="wrap" marginTop="space50"></Box>
-				<Label htmlFor="logoUrl" required>Voice Config</Label>
-				<Box display="flex" justifyContent="start" alignItems="center" rowGap="space0" columnGap="space50" width="100%" flexWrap="wrap" >
-					<Box display="flex" alignItems="center" columnGap="space50" width="size40">
-						<Select id="author">
-							<Option value="bee-housing">Bee Housing</Option>
-							<Option value="hubspot">Hubspot</Option>
-							<Option value="generic">Generic</Option>
-						</Select>
-					</Box>
-					<Box display="flex" alignItems="center" columnGap="space50" width="size40">
-						<Button variant="secondary" onClick={handleLogoSubmit}>Set Demo Config</Button>
-	</Box></Box>*/}
-			</Box>
+				
+</Box>*/}
 			<Box id="iframe_container" height="auto">
 				{img && <img id="imageid" src={img} alt="screenshot" width="100%" height="100%" />}
 			</Box>
