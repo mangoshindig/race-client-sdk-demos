@@ -17,12 +17,14 @@ export const ParentContainer = styled("div")`
   flex-direction: column;
   line-height: 25px;
   margin-right: 15px;
-  max-width: 400px;
+  max-width: 500px;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
   position: fixed;
-  height: 660px;
+  height: 820px;
   width: 100vw;
   z-index: 10;
-  overflow: scroll;
   ${mq[0]} {
     max-width: 100%;
     height: 100%;
@@ -40,6 +42,8 @@ export const HeaderContainer = styled("div")`
   width: 100%;
   padding: 1em;
   display: flex;
+
+
   flex-direction: row;
   align-content: center;
   justify-content: space-between;
@@ -61,6 +65,7 @@ export const ButtonsContainer = styled("div")`
   align-content: center;
   flex-wrap: nowrap;
   justify-content: space-between;
+  padding-bottom: 6em;
   
   ${mq[0]} {
     padding: 1.5em;
@@ -521,6 +526,8 @@ export const FlexWebChatContainer = styled("div")`
     paddingTop: 20px !important;
   }
 `;
+
+
 
 export const WebCallContainer = styled("div")`
   padding: 1em;

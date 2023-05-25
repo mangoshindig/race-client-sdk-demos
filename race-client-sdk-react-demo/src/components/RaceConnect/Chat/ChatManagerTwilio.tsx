@@ -29,21 +29,19 @@ const bubble = {
 	cursor: 'pointer !important'
 }
 
-// const wrapper = {
-// 	display: 'flex',
-// 	maxWidth: '300px',
-// 	position: 'absolute',
-// }
-
 const Wrapper = styled('div')`
 	display: flex;
-	max-width: 300px;
+	max-width: 460px;
+	min-width: 460px;
 	position: absolute;
-	bottom: 0px;
-	right: 0;
+	float:right;
+	bottom: 20px;
+	right: 20px;
 	flex-direction: column;
 	z-index: 100;
 	background-color: white;
+	border-radius: 25px;
+	overflow:hidden;
 `;
 
 export type FlexWebChatContainerProps = {
@@ -80,99 +78,131 @@ export const ChatManagerTwilio = ({ manager, setShowWidget }: FlexWebChatContain
 		}
 	}, [manager]);
 
-	useEffect(() => {
-		const container = document.querySelector<HTMLButtonElement>(".Twilio.Twilio-MainContainer");
+
+
+	const startListener = () => {
+		console.log('starting listener')
+		const c = manager.store.getState().flex.session.channelSid;
+
+		if (c) {
+			setChannelSid(c)
+		}
+
+		
+
+
+		console.log('chatclient', manager, manager.chatClient)
+		if (manager.chatClient) {
+
+
+
+			manager.chatClient.on('messageAdded', function (message) {
+
+				console.log('caz new message', message);
+				if (showRef.current) {
+					setShow(false)
+				}
+
+				if (message.state.author == 'Shelter') {
+					console.log('it is shelter!', message.channel.channelState.attributes.clickableMessages, clickableRef.current)
+					if (message.channel.channelState.attributes.clickableMessages != clickableRef.current && message.channel.channelState.attributes.clickableMessages != undefined) {
+						setClickable(message.channel.channelState.attributes.clickableMessages)
+						console.log('caz clickable changed', clickable, message.channel.channelState.attributes.clickableMessages)
+						const container = document.querySelector<HTMLDivElement>(".Twilio.Twilio-MainContainer");
+						if (container) 
+						{
+							console.log(container)
+							
+							// @ts-ignore:
+							var rect = document.getElementById('clickyB').getBoundingClientRect();
+							//console.log('height', rect,rect.y/rect.top)
+							var rect2 = container.getBoundingClientRect();
+							console.log('height', rect, rect2, ((rect2.y-rect.y)*-1).toString())
+
+							const l = message.channel.channelState.attributes.clickableMessages.length
+
+							let total = 0
+
+							for (const c of message.channel.channelState.attributes.clickableMessages)
+							{
+								total = total + 33 + 12
+								total = total + (Math.ceil(c.message.length/61)-1)*(58-33)
+							}
+
+							
+
+							let a = 65
+
+							if(total > 200)
+							{
+								a = 55
+							}
+
+							if(total > 300)
+							{
+								a = 45
+							}
+							console.log(600-total+10, total, 600-total+a)
+							
+							
+							// @ts-ignore: I don't care 
+							//container.height = ((rect2.y-rect.y)*-1).toString()
+							//container.style.height = (((rect2.y-rect.y)*-1)-130).toString()+'px'
+							container.style.height = (600-total+a).toString()+'px'
+
+							//scroll
+							const ml = document.querySelector<HTMLDivElement>(".Twilio.Twilio-MessageList");
+							// @ts-ignore: I don't care 
+							ml.scrollTop = ml.scrollHeight;
+
+						}
+						setShow(true)
+						
+
+					}
+				}
+				else {
+					console.log('not shelter', message.state.author)
+					const container = document.querySelector<HTMLDivElement>(".Twilio.Twilio-MainContainer");
 		if (container) {
 			// if (clickable.length > 0) {
 			// 	container.style.height = "200px";
 			// 	container.style.width = "100%";
 			// 	container.style.boxShadow = "none";
 			// } else {
-			container.style.height = "450px";
+			container.style.height = "600px";
 			container.style.width = "100%";
 			container.style.boxShadow = "none";
 		}
-		// }
-	}, [clickable]);
-
-	useEffect(() => {
-
-		setTimeout(() => {
-			if (manager) {
-
-				const c = manager.store.getState().flex.session.channelSid;
-
-				if (c) {
-					setChannelSid(c)
 				}
 
-				console.log('help me', manager, manager.chatClient)
-				manager.chatClient.on('messageAdded', function (message) {
-
-					console.log('caz new message', message);
-					if (showRef.current) {
-						setShow(false)
-					}
-
-					if (message.state.author == 'Shelter') {
-						console.log('it is shelter!', message.channel.channelState.attributes.clickableMessages, clickableRef.current)
-						if (message.channel.channelState.attributes.clickableMessages != clickableRef.current && message.channel.channelState.attributes.clickableMessages != undefined) {
-							setClickable(message.channel.channelState.attributes.clickableMessages)
-							console.log('caz clickable changed', clickable, message.channel.channelState.attributes.clickableMessages)
-							setShow(true)
-
-						}
-					}
-					else {
-						console.log('not shelter', message.state.author)
-					}
 
 
+			})
+		}
+		
+	}
 
-				})
+	
 
-			}
+	useEffect(() => {
+		FlexWebChat.Actions.addListener('afterStartEngagement', startListener)
 
+		
 
-		}, 7000)
+		const container = document.querySelector<HTMLDivElement>(".Twilio.Twilio-MainContainer");
+		if (container) {
+			// if (clickable.length > 0) {
+			// 	container.style.height = "200px";
+			// 	container.style.width = "100%";
+			// 	container.style.boxShadow = "none";
+			// } else {
+			container.style.height = "600px";
+			container.style.width = "100%";
+			container.style.boxShadow = "none";
+		}
 
 	}, []);
-
-	useEffect(() => {
-
-		console.log('caz show', show)
-
-
-
-	}, [show]);
-
-
-	useEffect(() => {
-
-		console.log('caz clickable', clickable)
-
-
-
-	}, [clickable]);
-
-
-
-
-	/*
-		useEffect(() => {
-			console.log('caz ch', channelSid)
-	
-			if (channelSid) {
-				manager.chatClient.getChannelBySid(channelSid).then(channel => { channel.getMessages().then(messages => { console.log('caz manager here ', messages) }) })
-	
-	
-	
-	
-	
-			}
-	
-	
-		}, [channelSid]);*/
 
 
 
@@ -205,6 +235,7 @@ export const ChatManagerTwilio = ({ manager, setShowWidget }: FlexWebChatContain
 	manager.strings.WelcomeMessage = "Welcome to Shelter Chat";
 
 	return (
+		<>
 		<FlexWebChatContainer>
 			<FlexWebChat.ContextProvider manager={manager}>
 				<Box display="flex" flexDirection="column" justifyContent="flex-end" alignItems="flex-end">
@@ -222,20 +253,21 @@ export const ChatManagerTwilio = ({ manager, setShowWidget }: FlexWebChatContain
 					</Box>
 
 					<FlexWebChat.MainContainer />
-					<Wrapper key="clickyButtons">
-						{clickable && show && clickable.map((m: any, index: number) => (
-							<div
-								style={bubble}
-								onClick={() => click(m.message)} //this.handleBubbleClick(m.message)}
-								key={index}
-							>
-								{m.message}
-							</div>
-						))}
-					</Wrapper>
+					
 				</Box>
 			</FlexWebChat.ContextProvider>
 		</FlexWebChatContainer>
+		<Wrapper key="clickyButtons" id="clickyB">
+		{clickable && show && clickable.map((m: any, index: number) => (
+			<div
+				style={bubble}
+				onClick={() => click(m.message)} //this.handleBubbleClick(m.message)}
+				key={index}
+			>
+				{m.message}
+			</div>
+		))}
+	</Wrapper></>
 	);
 };
 
